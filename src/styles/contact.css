@@ -70,7 +70,7 @@
 
 .contact-channel-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 14px;
     padding: 12px 14px;
     background: var(--bg);
@@ -98,6 +98,11 @@
     flex-shrink: 0;
 }
 
+.contact-channel-item > div:last-child {
+    min-width: 0;
+    flex: 1;
+}
+
 .channel-label {
     display: block;
     font-family: var(--font-mono);
@@ -109,7 +114,8 @@
     display: block;
     font-size: 0.875rem;
     color: var(--text-primary);
-    word-break: break-all;
+    word-break: normal;
+    overflow-wrap: anywhere;
 }
 
 /* Profile Actions */
