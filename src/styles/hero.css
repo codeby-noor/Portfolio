@@ -1,0 +1,289 @@
+/* ============================================================
+   HERO COMPONENT STYLES
+   ============================================================ */
+
+.hero-section {
+    position: relative;
+    padding-top: calc(var(--nav-height) + clamp(36px, 5vw, 64px));
+    padding-bottom: clamp(56px, 7vw, 92px);
+    border-bottom: 1px solid var(--border);
+    background: radial-gradient(circle at 10% 15%, rgba(79, 70, 229, 0.06) 0%, transparent 45%),
+                radial-gradient(circle at 90% 85%, rgba(6, 182, 212, 0.04) 0%, transparent 45%);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(36px, 5vw, 64px);
+    align-items: center;
+}
+
+/* Left Content */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+.hero-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    box-shadow: 0 0 8px rgba(129, 140, 248, 0.7);
+}
+
+.hero-title {
+    font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.hero-role-headline {
+    font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+}
+
+.hero-highlight {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+
+.hero-description {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    max-width: 580px;
+}
+
+/* Hero Actions */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+/* Tech Stack */
+.hero-tech-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.hero-tech-label {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.hero-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Social Links */
+.hero-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hero-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.hero-social-link:hover {
+    color: var(--accent-light);
+}
+
+/* ============================================================
+   Right: Purposeful Engineering Panel
+   ============================================================ */
+.hero-capability-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color var(--transition-base);
+}
+
+.hero-capability-panel:hover {
+    border-color: var(--border-hover);
+}
+
+.hero-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.hero-panel-icon {
+    color: var(--accent-light);
+}
+
+.hero-panel-status {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--success);
+    background: var(--success-subtle);
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+}
+
+.hero-capability-list {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--bg);
+}
+
+.hero-cap-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: all var(--transition-fast);
+}
+
+.hero-cap-item:hover {
+    border-color: var(--accent-border);
+    transform: translateX(2px);
+}
+
+.hero-cap-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-cap-icon {
+    color: var(--accent-light);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.hero-cap-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.hero-cap-detail {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.hero-cap-tech {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.hero-panel-footer {
+    padding: 12px 20px;
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.775rem;
+    color: var(--text-secondary);
+}
+
+.footer-status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
+    flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .hero-capability-panel {
+        max-width: 580px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .hero-socials {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

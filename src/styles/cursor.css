@@ -1,0 +1,54 @@
+/* ===== Premium Custom Cursor ===== */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo),
+        background 0.3s var(--ease-out-expo), opacity 0.3s var(--ease-out-expo);
+    mix-blend-mode: difference;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.custom-cursor.visible {
+    opacity: 1;
+}
+
+/* Hovering over general text - expand */
+.custom-cursor.hovering-link {
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    mix-blend-mode: normal;
+}
+
+.custom-cursor--label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s var(--ease-out-expo);
+}
+
+.custom-cursor.has-label .custom-cursor--label {
+    opacity: 1;
+}
+
+/* Disable on touch */
+@media (pointer: coarse) {
+    .custom-cursor {
+        display: none;
+    }
+}

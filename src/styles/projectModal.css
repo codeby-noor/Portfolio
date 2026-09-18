@@ -1,0 +1,307 @@
+/* ============================================================
+   PROJECT MODAL / CASE STUDY STYLES
+   ============================================================ */
+
+.project-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 32px);
+    overflow-y: auto;
+    animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.project-modal-container {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 860px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(24px) scale(0.97); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Modal Header */
+.project-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 24px 28px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+}
+
+.project-modal-kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.modal-role {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.project-modal-title {
+    font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.project-modal-tagline {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.project-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
+}
+
+.project-modal-close:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+    background: var(--surface-hover);
+}
+
+/* Modal Body */
+.project-modal-body {
+    padding: 28px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.modal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+}
+
+.modal-sec-icon {
+    font-size: 0.9rem;
+}
+
+.modal-section-text {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+/* Features List */
+.modal-features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.modal-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.modal-check {
+    color: var(--success);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+/* Engineering Decisions Grid */
+.modal-decisions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.modal-decision-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.decision-title {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.decision-rationale {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Data Flow Timeline */
+.modal-flow-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+}
+
+.modal-flow-step {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 0.875rem;
+}
+
+.flow-step-num {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    font-weight: 700;
+    color: var(--accent-light);
+    white-space: nowrap;
+}
+
+.flow-step-desc {
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+/* Challenge & Solution Card */
+.modal-challenge-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.challenge-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.challenge-item strong {
+    color: var(--text-primary);
+    font-size: 0.8125rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.challenge-item.solution strong {
+    color: var(--success);
+}
+
+/* Tech List */
+.modal-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Modal Footer */
+.project-modal-footer {
+    padding: 18px 28px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.modal-actions-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+    .modal-decisions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-flow-step {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .project-modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .modal-actions-left {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .modal-actions-left .btn {
+        width: 100%;
+    }
+}

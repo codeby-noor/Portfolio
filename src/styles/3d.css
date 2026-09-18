@@ -1,0 +1,122 @@
+/* ===== 3D Scene Backgrounds (Cinematic) ===== */
+.hero-cinema__webgl,
+.about-cinema__webgl,
+.skills-cinema__webgl,
+.education-cinema__webgl,
+.journey-cinema__webgl,
+.contact-cinema__webgl,
+.footer-cinema__webgl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.35;
+}
+
+.hero-cinema__webgl {
+    opacity: 0.5;
+}
+
+.skills-cinema__webgl {
+    opacity: 0.25;
+}
+
+.footer-cinema__webgl {
+    opacity: 0.3;
+}
+
+.projects-cinema__webgl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.25;
+}
+
+/* Ensure content sits above canvas */
+.hero-cinema__content,
+.about-cinema__content,
+.skills-cinema__content,
+.education-cinema__content,
+.journey-cinema__content,
+.contact-cinema__content,
+.footer-cinema__inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== 3D Tooltips ===== */
+.skill-3d-tooltip {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 10px 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 8px 30px var(--shadow-color);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.skill-3d-tooltip strong {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.skill-3d-tooltip span {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.project-3d-label {
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    pointer-events: none;
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-cinema__webgl,
+    .about-cinema__webgl,
+    .skills-cinema__webgl,
+    .education-cinema__webgl,
+    .journey-cinema__webgl,
+    .contact-cinema__webgl,
+    .footer-cinema__webgl {
+        opacity: 0.12;
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+
+    .about-cinema__webgl,
+    .skills-cinema__webgl,
+    .education-cinema__webgl,
+    .journey-cinema__webgl,
+    .contact-cinema__webgl {
+        opacity: 0.18;
+    }
+
+    .hero-cinema__webgl {
+        opacity: 0.3;
+    }
+}

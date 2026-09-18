@@ -1,0 +1,56 @@
+/* ===== Loading Screen — Minimal ===== */
+.loading {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+}
+
+.loading__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: min(320px, 80vw);
+}
+
+.loading__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+}
+
+.loading__role {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.loading__bar {
+    width: 100%;
+    height: 2px;
+    background: var(--border);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    margin-top: 16px;
+}
+
+.loading__bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    border-radius: var(--radius-pill);
+}
+
+.loading__percent {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
