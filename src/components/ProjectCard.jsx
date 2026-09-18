@@ -12,9 +12,10 @@ const ProjectCard = ({ project, index, onOpenModal }) => {
                     <span className="project-card-index">0{index + 1}</span>
                     <span className="badge badge--accent">{project.category}</span>
                 </div>
-                {project.role && (
-                    <span className="project-role-badge">{project.role}</span>
-                )}
+                <div className="project-card-status">
+                    {project.role && <span className="project-role-badge">{project.role}</span>}
+                    {project.access && <span className="project-access-badge">{project.access}</span>}
+                </div>
             </div>
 
             {/* Title & Tagline */}
@@ -30,7 +31,7 @@ const ProjectCard = ({ project, index, onOpenModal }) => {
             </div>
 
             {/* Key Capabilities */}
-            <div className="project-card-block">
+            {project.keyFeatures.length > 0 && <div className="project-card-block">
                 <span className="project-card-label">KEY CAPABILITIES</span>
                 <ul className="project-card-features">
                     {project.keyFeatures.slice(0, 3).map((feat, idx) => (
@@ -40,10 +41,10 @@ const ProjectCard = ({ project, index, onOpenModal }) => {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div>}
 
             {/* Technologies */}
-            <div className="project-card-block">
+            {project.technologies.length > 0 && <div className="project-card-block">
                 <span className="project-card-label">TECHNOLOGIES</span>
                 <div className="project-card-tech-list">
                     {project.technologies.map((tech) => (
@@ -52,17 +53,17 @@ const ProjectCard = ({ project, index, onOpenModal }) => {
                         </span>
                     ))}
                 </div>
-            </div>
+            </div>}
 
             {/* Actions */}
             <div className="project-card-actions">
                 <button
                     className="btn btn--primary btn--sm"
                     onClick={() => onOpenModal(project)}
-                    aria-label={`View Case Study & Architecture for ${project.title}`}
+                    aria-label={`View Case Study for ${project.title}`}
                 >
                     <FaCode aria-hidden="true" />
-                    <span>Case Study & Architecture</span>
+                    <span>View Case Study</span>
                     <FaArrowRight aria-hidden="true" />
                 </button>
 
@@ -75,8 +76,12 @@ const ProjectCard = ({ project, index, onOpenModal }) => {
                         aria-label={`Open Live Demo for ${project.title}`}
                     >
                         <FaExternalLinkAlt aria-hidden="true" />
-                        <span>Live Demo</span>
+                        <span>{project.liveLabel || "View Live Project"}</span>
                     </a>
+                )}
+
+                {!hasLiveUrl && project.privateLabel && (
+                    <span className="project-private-label">{project.privateLabel}</span>
                 )}
 
                 {hasGithubUrl && (

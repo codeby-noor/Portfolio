@@ -4,36 +4,18 @@ import { FaMapMarkerAlt, FaExternalLinkAlt, FaTimes, FaCheckCircle, FaGithub } f
 import { featuredProject } from "../data/projects";
 import "../styles/featured.css";
 
-// Case study content — only claims supported by the actual project data
-const caseStudy = {
-    overview:
-        "Broker Streets is a modern real estate website designed to showcase properties and provide users with an easy way to explore available properties and connect with brokers. It is built with a premium, business-focused design and modern animations.",
-    technology: ["React.js", "JavaScript", "Bootstrap", "CSS", "REST APIs"],
-    keyFeatures: [
-        "Modern real estate homepage",
-        "Property listings",
-        "Property cards",
-        "Property details",
-        "Search functionality",
-        "Property filtering",
-        "Location-based browsing",
-        "Broker inquiry / contact section",
-        "Responsive design",
-        "Modern animations",
-        "Mobile-friendly interface",
-    ],
-    contribution:
-        "Designed and developed the complete frontend experience — from the property browsing interface to search, filtering, property details and the broker inquiry flow. Focused on a premium, business-focused visual language with smooth, modern animations.",
-    challenges:
-        "Balancing a premium, business-focused aesthetic with a clean, fast and mobile-friendly interface. Structuring property data and interactions so that browsing, filtering and inquiry flows feel natural and responsive.",
-    result:
-        "A polished, responsive real estate platform that presents properties clearly and connects users with brokers — demonstrating a complete product-focused frontend build.",
-};
-
 const FeaturedProject = () => {
     const [caseOpen, setCaseOpen] = useState(false);
     const sectionRef = useRef(null);
     const project = featuredProject;
+    const caseStudy = {
+        overview: project.overview,
+        technology: project.technologies,
+        keyFeatures: project.keyFeatures,
+        contribution: project.myRole,
+        challenges: project.challenge,
+        result: project.result,
+    };
 
     // Escape closes the case-study modal; lock body scroll while open.
     useEffect(() => {
@@ -77,7 +59,7 @@ const FeaturedProject = () => {
                             viewport={{ once: true, margin: "-60px" }}
                             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            REAL ESTATE PLATFORM
+                            {project.tagline}
                         </motion.div>
 
                         <motion.div
@@ -88,7 +70,7 @@ const FeaturedProject = () => {
                             transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <FaMapMarkerAlt aria-hidden="true" />
-                            {project.location}
+                            {project.access}
                         </motion.div>
 
                         <motion.p
@@ -98,7 +80,7 @@ const FeaturedProject = () => {
                             viewport={{ once: true, margin: "-60px" }}
                             transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            {project.description}
+                            {project.overview}
                         </motion.p>
 
                         <motion.div
@@ -108,7 +90,7 @@ const FeaturedProject = () => {
                             viewport={{ once: true, margin: "-60px" }}
                             transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
                         >
-                            {project.features.slice(0, 6).map((feature) => (
+                            {project.keyFeatures.slice(0, 6).map((feature) => (
                                 <span className="featured__feature" key={feature}>
                                     <FaCheckCircle aria-hidden="true" />
                                     {feature}
@@ -136,7 +118,7 @@ const FeaturedProject = () => {
                                     if (!project.liveUrl || project.liveUrl === "#") e.preventDefault();
                                 }}
                             >
-                                OPEN LIVE DEMO
+                                VIEW LIVE PROJECT
                                 <span className="btn__arrow" aria-hidden="true">↗</span>
                             </a>
                         </motion.div>
@@ -156,12 +138,12 @@ const FeaturedProject = () => {
                                 <span className="featured__dot" />
                                 <span className="featured__dot" />
                                 <span className="featured__dot" />
-                                <span className="featured__url">brokerstreets.com</span>
+                                <span className="featured__url">aijamin.in</span>
                             </div>
                             <div className="featured__browser-body">
-                                <img
+                                    <img
                                     src={project.image}
-                                    alt="Broker Streets real estate platform preview"
+                                    alt={`${project.title} preview`}
                                     className="featured__shot"
                                     loading="lazy"
                                     onError={(e) => {
@@ -170,7 +152,7 @@ const FeaturedProject = () => {
                                     }}
                                 />
                                 <div className="featured__shot-fallback">
-                                    <span className="featured__fallback-label">BROKER STREETS</span>
+                                    <span className="featured__fallback-label">{project.title.toUpperCase()}</span>
                                     <div className="featured__fallback-cards">
                                         <span className="featured__fallback-card" />
                                         <span className="featured__fallback-card" />
@@ -202,7 +184,7 @@ const FeaturedProject = () => {
                         onClick={() => setCaseOpen(false)}
                         role="dialog"
                         aria-modal="true"
-                        aria-label="Broker Streets case study"
+                        aria-label={`${project.title} case study`}
                     >
                         <motion.div
                             className="case-modal"
@@ -215,8 +197,8 @@ const FeaturedProject = () => {
                             <div className="case-modal__header">
                                 <div>
                                     <span className="case-modal__eyebrow">CASE STUDY</span>
-                                    <h3 className="case-modal__title">BROKER STREETS</h3>
-                                    <span className="case-modal__sub">Real Estate Platform · Navsari, Gujarat</span>
+                                    <h3 className="case-modal__title">{project.title.toUpperCase()}</h3>
+                                    <span className="case-modal__sub">{project.tagline}</span>
                                 </div>
                                 <button className="case-modal__close" onClick={() => setCaseOpen(false)} aria-label="Close case study">
                                     <FaTimes />
@@ -255,7 +237,7 @@ const FeaturedProject = () => {
                                     <div className="case-modal__preview">
                                         <img
                                             src={project.image}
-                                            alt="Broker Streets UI preview"
+                                            alt={`${project.title} UI preview`}
                                             loading="lazy"
                                             onError={(e) => { e.currentTarget.style.display = "none"; }}
                                         />
@@ -290,17 +272,16 @@ const FeaturedProject = () => {
                                 >
                                     <FaExternalLinkAlt aria-hidden="true" /> OPEN LIVE DEMO
                                 </a>
-                                <a
-                                    href={project.githubUrl || "#"}
+                                {project.githubUrl && (
+                                    <a
+                                    href={project.githubUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="case-modal__btn"
-                                    onClick={(e) => {
-                                        if (!project.githubUrl || project.githubUrl === "#") e.preventDefault();
-                                    }}
                                 >
                                     <FaGithub aria-hidden="true" /> VIEW CODE
-                                </a>
+                                    </a>
+                                )}
                             </div>
                         </motion.div>
                     </motion.div>

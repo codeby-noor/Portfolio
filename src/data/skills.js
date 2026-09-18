@@ -27,7 +27,7 @@ export const skillCategories = [
                 name: "React.js",
                 icon: FaReact,
                 color: "#61DAFB",
-                appliedIn: "E-Commerce, Broker Streets, Chat App, Admin Dashboard",
+                appliedIn: "Internship project work",
                 context: "Component architecture, React Hooks, Context API, dynamic UI routing"
             },
             {
@@ -55,7 +55,7 @@ export const skillCategories = [
                 name: "Bootstrap",
                 icon: FaBootstrap,
                 color: "#7952B3",
-                appliedIn: "Broker Streets Real Estate Platform",
+                appliedIn: "Internship project work",
                 context: "Rapid UI prototyping, grid alignment, modal & form layouts"
             }
         ]
@@ -84,7 +84,7 @@ export const skillCategories = [
                 name: "RESTful API Architecture",
                 icon: TbApiApp,
                 color: "#00C7B7",
-                appliedIn: "E-Commerce, Broker Streets, Admin Analytics",
+                appliedIn: "Internship project work",
                 context: "CRUD operations, HTTP status codes, structured JSON request/response design"
             }
         ]
@@ -99,14 +99,14 @@ export const skillCategories = [
                 name: "MySQL",
                 icon: SiMysql,
                 color: "#4479A1",
-                appliedIn: "Full-Stack E-Commerce & Admin Analytics Dashboard",
+                appliedIn: "Internship project work",
                 context: "Relational schema design, primary/foreign keys, joins, aggregate queries"
             },
             {
                 name: "MongoDB",
                 icon: SiMongodb,
                 color: "#47A248",
-                appliedIn: "Real-Time Chat Application",
+                appliedIn: "Internship project work",
                 context: "Document modeling, collections, rapid message persistence"
             },
             {
@@ -135,14 +135,14 @@ export const skillCategories = [
                 name: "GitHub",
                 icon: FaGithub,
                 color: "#ffffff",
-                appliedIn: "mahenoorshaikh repository portfolio",
+                appliedIn: "Personal portfolio",
                 context: "Code hosting, documentation, open source project structure"
             },
             {
                 name: "Postman",
                 icon: SiPostman,
                 color: "#FF6C37",
-                appliedIn: "E-Commerce & Dashboard API development",
+                appliedIn: "API development",
                 context: "Endpoint testing, request payload inspection, status code verification"
             },
             {

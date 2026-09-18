@@ -66,7 +66,7 @@ const About = () => {
                             I am a <strong>Full Stack Developer</strong> based in Navsari, Gujarat, India. During my <strong>Bachelor of Computer Applications (BCA)</strong> degree (2022–2025), I developed foundational knowledge in database systems, data structures, and software principles.
                         </p>
                         <p className="about-story-p">
-                            To apply these concepts to full-stack applications, I completed intensive <strong>Full-Stack Web Development</strong> training (2025–2026), building complete projects including an E-Commerce platform with MySQL, a real-time chat application with WebSockets and MongoDB, and a real estate property platform.
+                            To apply these concepts to full-stack applications, I completed intensive <strong>Full-Stack Web Development</strong> training (2025–2026) and developed professional projects during my internship.
                         </p>
 
                         <div className="about-story-commitments">

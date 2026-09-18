@@ -77,7 +77,7 @@ const ProjectModal = ({ project, onClose }) => {
                     </div>
 
                     {/* 3. Key Features */}
-                    <div className="modal-section">
+                    {project.keyFeatures.length > 0 && <div className="modal-section">
                         <h3 className="modal-section-title">
                             <FaCheckCircle className="modal-sec-icon" aria-hidden="true" />
                             <span>3. Key Features Implemented</span>
@@ -90,10 +90,10 @@ const ProjectModal = ({ project, onClose }) => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div>}
 
                     {/* 4. Technical Implementation & Decisions */}
-                    <div className="modal-section">
+                    {project.technicalImplementation && <div className="modal-section">
                         <h3 className="modal-section-title">
                             <FaCogs className="modal-sec-icon" aria-hidden="true" />
                             <span>4. Technical Implementation & Engineering Decisions</span>
@@ -110,10 +110,10 @@ const ProjectModal = ({ project, onClose }) => {
                                 ))}
                             </div>
                         )}
-                    </div>
+                    </div>}
 
                     {/* 5. Data & API Flow */}
-                    {project.dataFlow && (
+                    {project.dataFlow && project.dataFlow.length > 0 && (
                         <div className="modal-section">
                             <h3 className="modal-section-title">
                                 <FaProjectDiagram className="modal-sec-icon" aria-hidden="true" />
@@ -131,7 +131,7 @@ const ProjectModal = ({ project, onClose }) => {
                     )}
 
                     {/* 6. Engineering Challenge & Solution */}
-                    {project.challenge && (
+                    {project.challenge && project.solution && (
                         <div className="modal-section">
                             <h3 className="modal-section-title">
                                 <FaExclamationTriangle className="modal-sec-icon" aria-hidden="true" />
@@ -162,7 +162,7 @@ const ProjectModal = ({ project, onClose }) => {
                     )}
 
                     {/* 8. Tech Stack */}
-                    <div className="modal-section">
+                    {project.technologies.length > 0 && <div className="modal-section">
                         <h3 className="modal-section-title">
                             <span>Technologies Used</span>
                         </h3>
@@ -173,7 +173,7 @@ const ProjectModal = ({ project, onClose }) => {
                                 </span>
                             ))}
                         </div>
-                    </div>
+                    </div>}
                 </div>
 
                 {/* Modal Footer Actions */}
@@ -187,7 +187,7 @@ const ProjectModal = ({ project, onClose }) => {
                                 className="btn btn--primary"
                             >
                                 <FaExternalLinkAlt aria-hidden="true" />
-                                <span>Open Live Demo</span>
+                                <span>{project.liveLabel || "View Live Project"}</span>
                             </a>
                         )}
                         {hasGithubUrl && (
@@ -200,6 +200,9 @@ const ProjectModal = ({ project, onClose }) => {
                                 <FaGithub aria-hidden="true" />
                                 <span>View GitHub Source</span>
                             </a>
+                        )}
+                        {!hasLiveUrl && project.privateLabel && (
+                            <span className="project-private-label">{project.privateLabel}</span>
                         )}
                     </div>
                     <button className="btn btn--outline" onClick={onClose}>
