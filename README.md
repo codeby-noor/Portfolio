@@ -9,7 +9,7 @@ A responsive developer portfolio built with React.js showcasing full-stack appli
 This repository contains the source code for the personal developer portfolio of **Mahenoor Shaikh**, a Full Stack Developer based in Navsari, Gujarat, India.
 
 The portfolio provides an overview of:
-- **Core Specialization**: Full-stack web application development across React, Node.js, Express, MySQL, MongoDB, and REST APIs.
+- **Core Specialization**: Full-stack web application development across React, Node.js, Express, PostgreSQL/Supabase, MySQL, MongoDB, and REST APIs.
 - **Engineering Projects**: In-depth case studies covering problem statements, technical decisions, data flows, and project details.
 - **Academic Foundation**: Bachelor of Computer Applications (BCA, 2022–2025) and professional full-stack training (2025–2026).
 - **Direct Contact & Resume Access**: Access to the downloadable PDF resume, email, LinkedIn, and GitHub.

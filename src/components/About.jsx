@@ -13,7 +13,7 @@ const aboutHighlights = [
         title: "Full-Stack Development",
         subtitle: "Practical Web Engineering",
         icon: FaLaptopCode,
-        desc: "Hands-on engineering training with React, Node.js, Express.js, MySQL, MongoDB, and RESTful architectures (2025–2026)."
+        desc: "Hands-on engineering training with React (Router, Hooks, Redux Toolkit), Node.js, Express.js, PostgreSQL/Supabase, and RESTful architectures (2025–2026)."
     },
     {
         title: "Current Focus & Availability",
@@ -24,11 +24,11 @@ const aboutHighlights = [
 ];
 
 const engineeringPractices = [
-    "Building modular, reusable React UI components with responsive CSS and Bootstrap",
-    "Designing structured RESTful API endpoints with input validation and modular routing",
-    "Modeling relational schemas in MySQL (primary/foreign keys, joins) and collections in MongoDB",
-    "Maintaining clean Git commits, clear documentation, and standard project structures",
-    "Testing API endpoints with Postman and validating responsive behavior across viewports"
+    "Building modular React interfaces with Hooks, Router, Redux Toolkit, and responsive Bootstrap/CSS",
+    "Designing RESTful APIs with Express.js — request validation, CORS, and auth-aware routing",
+    "Working with PostgreSQL via Supabase: structured tables, authentication, and analytics queries",
+    "Modeling relational data in MySQL (keys, joins) with additional MongoDB document experience",
+    "Testing APIs with Postman, managing Git history, and shipping responsive production builds"
 ];
 
 const workflowSteps = [
@@ -46,14 +46,14 @@ const About = () => {
             <div className="container">
                 <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
-                        <span className="section-eyebrow-dot" />
+                        <span className="section-index">01</span>
                         <span>Background & Technical Focus</span>
                     </div>
                     <h2 className="section-title">
                         <SplitWords text="About my background and approach." />
                     </h2>
                     <p className="section-description">
-                        Full Stack Developer with a Bachelor of Computer Applications foundation, focused on building clean, database-backed web applications.
+                        Full Stack Developer working across frontend development, backend APIs, databases, authentication, analytics, and responsive interfaces.
                     </p>
                 </div>
 

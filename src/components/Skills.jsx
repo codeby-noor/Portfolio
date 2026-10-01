@@ -11,7 +11,7 @@ const Skills = () => {
             <div className="container">
                 <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
-                        <span className="section-eyebrow-dot" />
+                        <span className="section-index">02</span>
                         <span>Technical Capabilities & Application</span>
                     </div>
                     <h2 className="section-title">
@@ -50,7 +50,6 @@ const Skills = () => {
                                             <div className="skill-item-brand">
                                                 <skill.icon
                                                     className="skill-item-icon"
-                                                    style={{ color: skill.color || "inherit" }}
                                                     aria-hidden="true"
                                                 />
                                                 <span className="skill-item-name">{skill.name}</span>

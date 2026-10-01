@@ -67,7 +67,7 @@ const Contact = () => {
             <div className="container">
                 <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
-                        <span className="section-eyebrow-dot" />
+                        <span className="section-index">05</span>
                         <span>Contact & Opportunities</span>
                     </div>
                     <h2 className="section-title">

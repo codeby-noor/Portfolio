@@ -1,160 +1,84 @@
-import { useRef } from "react";
 import { motion } from "framer-motion";
-import { FaExternalLinkAlt, FaGithub, FaCheckCircle, FaArrowRight, FaCode } from "react-icons/fa";
+import { FaArrowRight, FaExternalLinkAlt } from "react-icons/fa";
 import { EASE } from "../motion/motion";
 
 /**
- * ProjectCard — premium interactive showcase.
- * - Subtle 3D tilt on pointer (max ~6deg), content lifts independently
- * - Image parallax + glare follows pointer, border light responds
- * - Restrained: springs, no aggressive motion. Disabled on touch / reduced-motion.
+ * ProjectCard — editorial project entry.
+ * Numbered, typographic, hairline-ruled. Real work first:
+ * title, scope, technology metadata, links. No decoration.
  */
 const ProjectCard = ({ project, index, onOpenModal }) => {
-    const cardRef = useRef(null);
-    const visualRef = useRef(null);
     const hasLiveUrl = project.liveUrl && project.liveUrl !== "#" && project.liveUrl !== "";
     const hasGithubUrl = project.githubUrl && project.githubUrl !== "#" && project.githubUrl !== "";
-
-    const handleMove = (e) => {
-        const el = cardRef.current;
-        if (!el) return;
-        if (window.matchMedia("(pointer: coarse)").matches) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const rect = el.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width - 0.5;
-        const py = (e.clientY - rect.top) / rect.height - 0.5;
-        el.style.transform = `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg) translateY(-4px)`;
-        el.style.setProperty("--glare-x", `${((px + 0.5) * 100).toFixed(1)}%`);
-        el.style.setProperty("--glare-y", `${((py + 0.5) * 100).toFixed(1)}%`);
-        if (visualRef.current) {
-            visualRef.current.style.transform = `translate3d(${(px * 10).toFixed(1)}px, ${(py * 10).toFixed(1)}px, 0) scale(1.04)`;
-        }
-    };
-
-    const handleLeave = () => {
-        const el = cardRef.current;
-        if (!el) return;
-        el.style.transform = "";
-        if (visualRef.current) visualRef.current.style.transform = "";
-    };
+    const num = String(index + 1).padStart(2, "0");
 
     return (
         <motion.article
-            ref={cardRef}
-            className="project-card tilt-card"
-            onPointerMove={handleMove}
-            onPointerLeave={handleLeave}
-            initial={{ opacity: 0, y: 32 }}
+            className="project-entry"
+            initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.9, ease: EASE.out, delay: (index % 2) * 0.1 }}
+            transition={{ duration: 0.85, ease: EASE.out, delay: (index % 2) * 0.08 }}
         >
-            <div className="tilt-glare" aria-hidden="true" />
-
-            {/* Visual — abstract liquid cover (no external asset needed) */}
-            <div className="project-visual" aria-hidden="true">
-                <div
-                    ref={visualRef}
-                    className="project-visual__inner"
-                    style={{ "--proj-accent": project.accent || "#6366f1" }}
-                >
-                    <span className="project-visual__orb" />
-                    <span className="project-visual__grid" />
-                    <span className="project-visual__monogram">{project.title.slice(0, 2).toUpperCase()}</span>
-                </div>
-                {project.image ? (
-                    <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="project-visual__img" />
-                ) : null}
+            <div className="project-entry__top">
+                <span className="project-index">{num}</span>
+                <span className="badge">{project.category}</span>
+                {project.featured && <span className="badge badge--accent">Featured</span>}
+                <span className="project-entry__standing">
+                    {project.role}{project.access ? ` — ${project.access}` : ""}
+                </span>
             </div>
 
-            {/* Top Meta */}
-            <div className="project-card-meta">
-                <div className="project-card-num-cat">
-                    <span className="project-card-index">0{index + 1}</span>
-                    <span className="badge badge--accent">{project.category}</span>
-                </div>
-                <div className="project-card-status">
-                    {project.role && <span className="project-role-badge">{project.role}</span>}
-                    {project.access && <span className="project-access-badge">{project.access}</span>}
-                </div>
-            </div>
+            <h3 className="project-entry__title">{project.title}</h3>
+            <p className="project-entry__tagline">{project.tagline}</p>
+            <p className="project-entry__scope">{project.whatIBuilt || project.summary}</p>
 
-            {/* Title & Tagline */}
-            <div>
-                <h3 className="project-card-title">{project.title}</h3>
-                <p className="project-card-tagline">{project.tagline}</p>
-            </div>
-
-            {/* What I Built (Engineering Scope) */}
-            <div className="project-card-block">
-                <span className="project-card-label">ENGINEERING SCOPE</span>
-                <p className="project-card-text">{project.whatIBuilt || project.summary}</p>
-            </div>
-
-            {/* Key Capabilities */}
-            {project.keyFeatures.length > 0 && <div className="project-card-block">
-                <span className="project-card-label">KEY CAPABILITIES</span>
-                <ul className="project-card-features">
+            {project.keyFeatures.length > 0 && (
+                <ul className="project-entry__points">
                     {project.keyFeatures.slice(0, 3).map((feat, idx) => (
-                        <li key={idx} className="project-card-feature-item">
-                            <FaCheckCircle className="feature-check" aria-hidden="true" />
-                            <span>{feat}</span>
-                        </li>
+                        <li key={idx}>{feat}</li>
                     ))}
                 </ul>
-            </div>}
+            )}
 
-            {/* Technologies */}
-            {project.technologies.length > 0 && <div className="project-card-block">
-                <span className="project-card-label">TECHNOLOGIES</span>
-                <div className="project-card-tech-list">
-                    {project.technologies.map((tech) => (
-                        <span key={tech} className="badge">
-                            {tech}
-                        </span>
-                    ))}
-                </div>
-            </div>}
+            {project.technologies.length > 0 && (
+                <p className="project-entry__stack">{project.technologies.join("  ·  ")}</p>
+            )}
 
-            {/* Actions */}
-            <div className="project-card-actions">
+            <div className="project-entry__actions">
                 <button
                     className="btn btn--primary btn--sm"
                     onClick={() => onOpenModal(project)}
                     aria-label={`View Case Study for ${project.title}`}
                 >
-                    <FaCode aria-hidden="true" />
                     <span>View Case Study</span>
                     <FaArrowRight aria-hidden="true" />
                 </button>
-
                 {hasLiveUrl && (
                     <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn--secondary btn--sm"
+                        className="project-entry__link"
                         aria-label={`Open Live Demo for ${project.title}`}
                     >
-                        <FaExternalLinkAlt aria-hidden="true" />
                         <span>{project.liveLabel || "View Live Project"}</span>
+                        <FaExternalLinkAlt aria-hidden="true" />
                     </a>
                 )}
-
                 {!hasLiveUrl && project.privateLabel && (
-                    <span className="project-private-label">{project.privateLabel}</span>
+                    <span className="project-entry__private">{project.privateLabel}</span>
                 )}
-
                 {hasGithubUrl && (
                     <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn--outline btn--sm"
+                        className="project-entry__link"
                         aria-label={`View Source Code on GitHub for ${project.title}`}
                     >
-                        <FaGithub aria-hidden="true" />
                         <span>GitHub</span>
+                        <FaExternalLinkAlt aria-hidden="true" />
                     </a>
                 )}
             </div>

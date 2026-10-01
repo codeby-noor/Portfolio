@@ -39,7 +39,7 @@ const Education = () => {
             <div className="container">
                 <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
-                        <span className="section-eyebrow-dot" />
+                        <span className="section-index">04</span>
                         <span>Background & Training</span>
                     </div>
                     <h2 className="section-title">
