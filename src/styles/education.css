@@ -9,25 +9,25 @@
 .education-timeline {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 18px;
 }
 
 .education-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: clamp(22px, 3.5vw, 32px);
+    border-radius: var(--radius-md);
+    padding: clamp(20px, 3vw, 26px);
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
     box-shadow: var(--shadow-sm);
-    transition: all var(--transition-base);
+    transition: border-color var(--transition-base);
 }
 
 .education-card:hover {
     border-color: var(--border-hover);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+    transform: none;
 }
 
 .education-card-top {

@@ -18,7 +18,7 @@ const Projects = () => {
 
     return (
         <section id="projects" className="section projects-section">
-            <div className="container container--narrow">
+            <div className="container">
                 <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
                         <span className="section-index">03</span>

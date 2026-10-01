@@ -31,6 +31,14 @@ const engineeringPractices = [
     "Testing APIs with Postman, managing Git history, and shipping responsive production builds"
 ];
 
+const capabilities = [
+    { term: "Frontend", desc: "React interfaces with routing, state, and responsive layouts" },
+    { term: "Backend", desc: "Node.js + Express REST APIs with validation and CORS" },
+    { term: "Database", desc: "PostgreSQL via Supabase; MySQL relational modeling" },
+    { term: "Auth & APIs", desc: "Supabase Auth sessions and third-party API integration" },
+    { term: "Responsive UI", desc: "Mobile-first builds, tested across viewports" }
+];
+
 const workflowSteps = [
     { step: "01", title: "Understand", desc: "Define requirements & data models" },
     { step: "02", title: "Plan", desc: "Structure components & API routes" },
@@ -55,6 +63,18 @@ const About = () => {
                     <p className="section-description">
                         Full Stack Developer working across frontend development, backend APIs, databases, authentication, analytics, and responsive interfaces.
                     </p>
+                </div>
+
+                <div className="about-capabilities" data-reveal="rise">
+                    <h3 className="about-cap-heading">What I build</h3>
+                    <dl className="about-cap-list">
+                        {capabilities.map((cap) => (
+                            <div key={cap.term} className="about-cap-item">
+                                <dt>{cap.term}</dt>
+                                <dd>{cap.desc}</dd>
+                            </div>
+                        ))}
+                    </dl>
                 </div>
 
                 <div className="about-grid">

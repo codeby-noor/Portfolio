@@ -9,9 +9,50 @@
 .about-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(36px, 5vw, 64px);
+    gap: clamp(28px, 4vw, 48px);
     align-items: start;
-    margin-bottom: clamp(36px, 5vw, 56px);
+    margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+/* What I build — compact spec strip */
+.about-capabilities {
+    margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.about-cap-heading {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.about-cap-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.about-cap-item {
+    border-top: 2px solid var(--accent);
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.about-cap-item dt {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.about-cap-item dd {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
 }
 
 /* Story Side */
@@ -42,11 +83,11 @@
 
 /* Commitments */
 .about-story-commitments {
-    margin-top: 12px;
-    padding: 20px 22px;
+    margin-top: 8px;
+    padding: 18px 20px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
 }
 
 .about-commitments-heading {
@@ -145,11 +186,11 @@
 .about-workflow-wrap {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 24px 28px;
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
 .about-workflow-heading {
@@ -206,17 +247,35 @@
     .about-workflow-steps {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    .about-cap-list {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 22px;
+    }
 }
 
 @media (max-width: 860px) {
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 640px) {
+    .about-cap-list {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 580px) {
     .about-workflow-steps {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 420px) {
+    .about-cap-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 }

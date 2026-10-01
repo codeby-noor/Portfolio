@@ -5,19 +5,19 @@
 .footer-section {
     background: var(--bg-elevated);
     border-top: 1px solid var(--border);
-    padding: clamp(48px, 6vw, 72px) 0 32px;
+    padding: clamp(36px, 5vw, 48px) 0 24px;
 }
 
 .footer-container {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 28px;
 }
 
 .footer-top {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    gap: clamp(32px, 5vw, 64px);
+    gap: clamp(24px, 4vw, 48px);
 }
 
 /* Brand */
@@ -35,14 +35,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: var(--radius-sm);
     background: var(--accent);
-    color: #ffffff;
+    color: #1a130c;
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 700;
+}
+
+[data-theme="light"] .footer-logo-mark {
+    color: #fff8ee;
 }
 
 .footer-bio {

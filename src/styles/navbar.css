@@ -9,25 +9,26 @@
     width: 100%;
     height: var(--nav-height);
     z-index: 100;
-    background: rgba(9, 10, 15, 0.75);
+    background: rgba(20, 18, 14, 0.82);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid transparent;
-    transition: all var(--transition-base);
+    transition: height var(--transition-base), background var(--transition-base), border-color var(--transition-base);
 }
 
 [data-theme="light"] .nav-header {
-    background: rgba(248, 250, 252, 0.85);
+    background: rgba(244, 239, 228, 0.86);
 }
 
 .nav-header--scrolled {
-    background: rgba(9, 10, 15, 0.92);
+    height: 54px;
+    background: rgba(20, 18, 14, 0.95);
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
 }
 
 [data-theme="light"] .nav-header--scrolled {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(250, 246, 236, 0.96);
     border-bottom: 1px solid var(--border);
 }
 
@@ -53,14 +54,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: var(--radius-sm);
     background: var(--accent);
-    color: #ffffff;
+    color: #1a130c;
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 700;
+}
+
+[data-theme="light"] .nav-logo-mark {
+    color: #fff8ee;
 }
 
 .nav-logo-text {
