@@ -2,6 +2,8 @@ import { useState } from "react";
 import { projects } from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import FeaturedBand from "./FeaturedBand";
+import { SplitWords } from "./Reveal";
 import "../styles/projects.css";
 
 const Projects = () => {
@@ -18,17 +20,21 @@ const Projects = () => {
     return (
         <section id="projects" className="section projects-section">
             <div className="container">
-                <div className="section-header">
+                <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
                         <span className="section-eyebrow-dot" />
                         <span>Proof of Work</span>
                     </div>
                     <h2 className="section-title">
-                        Featured engineering projects.
+                        <SplitWords text="Featured engineering projects." />
                     </h2>
                     <p className="section-description">
                         Real-world full-stack applications showcasing frontend modularity, REST API architecture, database modeling, and product functionality.
                     </p>
+                </div>
+
+                <div data-reveal="scale">
+                    <FeaturedBand onOpenCase={handleOpenModal} />
                 </div>
 
                 <div className="projects-grid">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaGithub, FaLinkedinIn, FaPaperPlane, FaCheckCircle, FaFileDownload } from "react-icons/fa";
+import { SplitWords } from "./Reveal";
 import "../styles/contact.css";
 
 const Contact = () => {
@@ -64,13 +65,13 @@ const Contact = () => {
     return (
         <section id="contact" className="section contact-section">
             <div className="container">
-                <div className="section-header">
+                <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
                         <span className="section-eyebrow-dot" />
                         <span>Contact & Opportunities</span>
                     </div>
                     <h2 className="section-title">
-                        Have an open role or project? Let's connect.
+                        <SplitWords text="Have an open role or project? Let's connect." />
                     </h2>
                     <p className="section-description">
                         Available for full-time engineering positions, remote roles, and contract development opportunities worldwide.
@@ -79,7 +80,7 @@ const Contact = () => {
 
                 <div className="contact-grid">
                     {/* Left Column: Direct Channels */}
-                    <div className="contact-info-panel">
+                    <div className="contact-info-panel" data-reveal="left">
                         <div className="contact-info-card">
                             <h3 className="contact-info-name">Mahenoor Shaikh</h3>
                             <p className="contact-info-role">Full-Stack Web Developer</p>
@@ -167,7 +168,7 @@ const Contact = () => {
                     </div>
 
                     {/* Right Column: Contact Form */}
-                    <div className="contact-form-panel">
+                    <div className="contact-form-panel" data-reveal="scale" data-delay="0.1">
                         <form className="contact-form" onSubmit={handleSubmit} noValidate>
                             <h3 className="contact-form-title">Send a Direct Message</h3>
 

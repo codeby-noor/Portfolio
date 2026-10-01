@@ -1,5 +1,11 @@
+import { Suspense, lazy } from "react";
+import { motion } from "framer-motion";
 import { FaFileDownload, FaArrowRight, FaGithub, FaLinkedinIn, FaCode, FaServer, FaDatabase, FaFolder } from "react-icons/fa";
+import { SplitWords } from "./Reveal";
+import { EASE } from "../motion/motion";
 import "../styles/hero.css";
+
+const LiquidHeroCanvas = lazy(() => import("../three/LiquidHero"));
 
 const coreStack = [
     "React.js",
@@ -33,12 +39,22 @@ const capabilityHighlights = [
     }
 ];
 
+const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 26, filter: "blur(6px)" },
+    animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+    transition: { duration: 0.9, ease: EASE.out, delay },
+});
+
 const Hero = () => {
     const handleScrollTo = (e, targetId) => {
         e.preventDefault();
-        const el = document.querySelector(targetId);
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
+        // Lenis intercepts anchor clicks globally; fallback for no-JS Lenis
+        if (window.__lenis) {
+            const el = document.querySelector(targetId);
+            if (el) window.__lenis.scrollTo(el, { offset: -84, duration: 1.4 });
+        } else {
+            const el = document.querySelector(targetId);
+            if (el) el.scrollIntoView({ behavior: "smooth" });
         }
     };
 
@@ -48,25 +64,25 @@ const Hero = () => {
                 <div className="hero-grid">
                     {/* Left Column: Direct Recruiter Overview */}
                     <div className="hero-content">
-                        <div className="hero-badge">
+                        <motion.div className="hero-badge" {...fadeUp(0)}>
                             <span className="hero-badge-dot" />
                             <span>Full-Stack Web Developer · Navsari, Gujarat, India</span>
-                        </div>
+                        </motion.div>
 
                         <h1 className="hero-title">
-                            Mahenoor Shaikh
+                            <SplitWords text="Mahenoor Shaikh" />
                         </h1>
 
-                        <p className="hero-role-headline">
+                        <motion.p className="hero-role-headline" {...fadeUp(0.15)}>
                             Full Stack Developer building <span className="hero-highlight">functional, database-backed</span> web applications across frontend and backend.
-                        </p>
+                        </motion.p>
 
-                        <p className="hero-description">
+                        <motion.p className="hero-description" {...fadeUp(0.25)}>
                             Bachelor of Computer Applications (BCA) graduate with hands-on full-stack development experience. Focused on modular React components, reliable Express.js REST APIs, and structured SQL/NoSQL databases.
-                        </p>
+                        </motion.p>
 
                         {/* Recruiter Action Buttons */}
-                        <div className="hero-actions">
+                        <motion.div className="hero-actions" {...fadeUp(0.35)}>
                             <a
                                 href="#projects"
                                 className="btn btn--primary"
@@ -94,10 +110,10 @@ const Hero = () => {
                             >
                                 <span>Contact Me</span>
                             </a>
-                        </div>
+                        </motion.div>
 
                         {/* Core Stack Pills */}
-                        <div className="hero-tech-stack">
+                        <motion.div className="hero-tech-stack" {...fadeUp(0.45)}>
                             <span className="hero-tech-label">CORE TECHNOLOGIES</span>
                             <div className="hero-tech-list">
                                 {coreStack.map((tech) => (
@@ -106,10 +122,10 @@ const Hero = () => {
                                     </span>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Direct Profile Links */}
-                        <div className="hero-socials">
+                        <motion.div className="hero-socials" {...fadeUp(0.55)}>
                             <a
                                 href="https://github.com/codeby-noor"
                                 target="_blank"
@@ -130,11 +146,26 @@ const Hero = () => {
                                 <FaLinkedinIn aria-hidden="true" />
                                 <span>linkedin.com/in/mahenoor-shaikh</span>
                             </a>
-                        </div>
+                        </motion.div>
                     </div>
 
-                    {/* Right Column: Purposeful Full-Stack Engineering Overview */}
-                    <div className="hero-visual">
+                    {/* Right Column: Liquid 3D + Engineering Overview */}
+                    <motion.div
+                        className="hero-visual"
+                        initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 1.4, ease: EASE.out, delay: 0.2 }}
+                    >
+                        <div className="hero-liquid-stage" aria-hidden="true">
+                            <Suspense fallback={<div className="hero-liquid-fallback" />}>
+                                <LiquidHeroCanvas />
+                            </Suspense>
+                            <div className="hero-liquid-caption">
+                                <span className="hero-liquid-pulse" />
+                                <span>Fluid systems · clean architecture</span>
+                            </div>
+                        </div>
+
                         <div className="hero-capability-panel">
                             <div className="hero-panel-header">
                                 <div className="hero-panel-title">
@@ -162,7 +193,7 @@ const Hero = () => {
                                 <span>Verified on real projects: E-Commerce, Real Estate & Real-Time Apps</span>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

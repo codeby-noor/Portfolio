@@ -1,4 +1,5 @@
 import { FaGraduationCap, FaLaptopCode, FaCheckCircle, FaBriefcase, FaArrowRight } from "react-icons/fa";
+import { SplitWords } from "./Reveal";
 import "../styles/about.css";
 
 const aboutHighlights = [
@@ -43,13 +44,13 @@ const About = () => {
     return (
         <section id="about" className="section about-section">
             <div className="container">
-                <div className="section-header">
+                <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
                         <span className="section-eyebrow-dot" />
                         <span>Background & Technical Focus</span>
                     </div>
                     <h2 className="section-title">
-                        About my background and approach.
+                        <SplitWords text="About my background and approach." />
                     </h2>
                     <p className="section-description">
                         Full Stack Developer with a Bachelor of Computer Applications foundation, focused on building clean, database-backed web applications.
@@ -58,8 +59,8 @@ const About = () => {
 
                 <div className="about-grid">
                     {/* Left Column: Summary */}
-                    <div className="about-story">
-                        <h3 className="about-story-title">
+                    <div className="about-story" data-reveal="rise">
+                        <h3 className="about-story-title" data-parallax="0.06">
                             Practical web development grounded in computer science fundamentals.
                         </h3>
                         <p className="about-story-p">
@@ -83,9 +84,9 @@ const About = () => {
                     </div>
 
                     {/* Right Column: Cards */}
-                    <div className="about-cards">
+                    <div className="about-cards" data-reveal="scale" data-delay="0.1">
                         {aboutHighlights.map((item, idx) => (
-                            <div key={idx} className="about-card">
+                            <div key={idx} className="about-card" data-reveal="rise" data-delay={String(idx * 0.06)}>
                                 <div className="about-card-header">
                                     <item.icon className="about-card-icon" />
                                     <div>
@@ -100,7 +101,7 @@ const About = () => {
                 </div>
 
                 {/* Development Workflow Strip */}
-                <div className="about-workflow-wrap">
+                <div className="about-workflow-wrap" data-reveal="clip">
                     <h4 className="about-workflow-heading">Development Approach:</h4>
                     <div className="about-workflow-steps">
                         {workflowSteps.map((ws, idx) => (

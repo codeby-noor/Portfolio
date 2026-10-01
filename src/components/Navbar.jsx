@@ -54,7 +54,11 @@ const Navbar = ({ theme, onToggleTheme }) => {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
+            if (window.__lenis) {
+                window.__lenis.scrollTo(target, { offset: -84, duration: 1.4 });
+            } else {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
         }
         setMobileOpen(false);
     };

@@ -1,11 +1,72 @@
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub, FaCheckCircle, FaArrowRight, FaCode } from "react-icons/fa";
+import { EASE } from "../motion/motion";
 
+/**
+ * ProjectCard — premium interactive showcase.
+ * - Subtle 3D tilt on pointer (max ~6deg), content lifts independently
+ * - Image parallax + glare follows pointer, border light responds
+ * - Restrained: springs, no aggressive motion. Disabled on touch / reduced-motion.
+ */
 const ProjectCard = ({ project, index, onOpenModal }) => {
+    const cardRef = useRef(null);
+    const visualRef = useRef(null);
     const hasLiveUrl = project.liveUrl && project.liveUrl !== "#" && project.liveUrl !== "";
     const hasGithubUrl = project.githubUrl && project.githubUrl !== "#" && project.githubUrl !== "";
 
+    const handleMove = (e) => {
+        const el = cardRef.current;
+        if (!el) return;
+        if (window.matchMedia("(pointer: coarse)").matches) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const rect = el.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `perspective(900px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg) translateY(-4px)`;
+        el.style.setProperty("--glare-x", `${((px + 0.5) * 100).toFixed(1)}%`);
+        el.style.setProperty("--glare-y", `${((py + 0.5) * 100).toFixed(1)}%`);
+        if (visualRef.current) {
+            visualRef.current.style.transform = `translate3d(${(px * 10).toFixed(1)}px, ${(py * 10).toFixed(1)}px, 0) scale(1.04)`;
+        }
+    };
+
+    const handleLeave = () => {
+        const el = cardRef.current;
+        if (!el) return;
+        el.style.transform = "";
+        if (visualRef.current) visualRef.current.style.transform = "";
+    };
+
     return (
-        <article className="project-card">
+        <motion.article
+            ref={cardRef}
+            className="project-card tilt-card"
+            onPointerMove={handleMove}
+            onPointerLeave={handleLeave}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.9, ease: EASE.out, delay: (index % 2) * 0.1 }}
+        >
+            <div className="tilt-glare" aria-hidden="true" />
+
+            {/* Visual — abstract liquid cover (no external asset needed) */}
+            <div className="project-visual" aria-hidden="true">
+                <div
+                    ref={visualRef}
+                    className="project-visual__inner"
+                    style={{ "--proj-accent": project.accent || "#6366f1" }}
+                >
+                    <span className="project-visual__orb" />
+                    <span className="project-visual__grid" />
+                    <span className="project-visual__monogram">{project.title.slice(0, 2).toUpperCase()}</span>
+                </div>
+                {project.image ? (
+                    <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="project-visual__img" />
+                ) : null}
+            </div>
+
             {/* Top Meta */}
             <div className="project-card-meta">
                 <div className="project-card-num-cat">
@@ -97,7 +158,7 @@ const ProjectCard = ({ project, index, onOpenModal }) => {
                     </a>
                 )}
             </div>
-        </article>
+        </motion.article>
     );
 };
 

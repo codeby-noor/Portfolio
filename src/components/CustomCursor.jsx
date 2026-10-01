@@ -1,65 +1,63 @@
-import { useEffect, useRef, useState } from "react";
-import "../styles/cursor.css";
+import { useEffect, useRef } from "react";
 
-const CustomCursor = () => {
-    const cursorRef = useRef(null);
-    const [visible, setVisible] = useState(false);
-    const [label, setLabel] = useState(null);
-    const [isLink, setIsLink] = useState(false);
+/**
+ * SubtleCursor — desktop-only cursor enhancement.
+ * Keeps the native cursor visible; adds a small trailing ring
+ * that slightly expands over interactive elements.
+ * No cursor: none. No usability harm. Touch devices skip.
+ */
+const SubtleCursor = () => {
+    const dotRef = useRef(null);
+    const ringRef = useRef(null);
 
     useEffect(() => {
-        // Only enable on non-touch devices
-        const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-        if (isTouchDevice) return;
+        if (window.matchMedia("(pointer: coarse)").matches) return undefined;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
 
-        const moveCursor = (e) => {
-            if (!cursorRef.current) return;
-            cursorRef.current.style.left = `${e.clientX}px`;
-            cursorRef.current.style.top = `${e.clientY}px`;
-            setVisible(true);
+        const dot = dotRef.current;
+        const ring = ringRef.current;
+        if (!dot || !ring) return undefined;
+
+        let x = -100;
+        let y = -100;
+        let rx = -100;
+        let ry = -100;
+        let raf = 0;
+
+        const onMove = (e) => {
+            x = e.clientX;
+            y = e.clientY;
+            dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
         };
 
-        const handleMouseOver = (e) => {
-            const target = e.target;
-            const closestLink = target.closest?.("a, button, .project-slide, .skills-cinema__word, .project-slide__frame");
-            const closestProject = target.closest?.(".project-slide__frame, .project-cinema");
+        const loop = () => {
+            rx += (x - rx) * 0.16;
+            ry += (y - ry) * 0.16;
+            ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+            raf = requestAnimationFrame(loop);
+        };
+        raf = requestAnimationFrame(loop);
 
-            if (closestProject) {
-                setLabel("VIEW");
-                setIsLink(true);
-            } else if (closestLink) {
-                setLabel("OPEN →");
-                setIsLink(true);
-            } else {
-                setLabel(null);
-                setIsLink(false);
-            }
+        const onOver = (e) => {
+            const interactive = e.target.closest?.("a, button, .tilt-card, input, textarea, select");
+            ring.classList.toggle("is-hovering", Boolean(interactive));
         };
 
-        const handleMouseLeave = () => {
-            setVisible(false);
-        };
-
-        window.addEventListener("mousemove", moveCursor);
-        window.addEventListener("mouseover", handleMouseOver);
-        document.addEventListener("mouseleave", handleMouseLeave);
-
+        window.addEventListener("mousemove", onMove, { passive: true });
+        window.addEventListener("mouseover", onOver, { passive: true });
         return () => {
-            window.removeEventListener("mousemove", moveCursor);
-            window.removeEventListener("mouseover", handleMouseOver);
-            document.removeEventListener("mouseleave", handleMouseLeave);
+            cancelAnimationFrame(raf);
+            window.removeEventListener("mousemove", onMove);
+            window.removeEventListener("mouseover", onOver);
         };
     }, []);
 
     return (
-        <div
-            ref={cursorRef}
-            className={`custom-cursor ${visible ? "visible" : ""} ${isLink ? "hovering-link" : ""} ${label ? "has-label" : ""}`}
-            aria-hidden="true"
-        >
-            {label && <span className="custom-cursor--label">{label}</span>}
-        </div>
+        <>
+            <div ref={dotRef} className="custom-cursor-dot" aria-hidden="true" />
+            <div ref={ringRef} className="custom-cursor-ring" aria-hidden="true" />
+        </>
     );
 };
 
-export default CustomCursor;
+export default SubtleCursor;

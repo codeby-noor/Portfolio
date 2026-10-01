@@ -10,9 +10,11 @@ const ProjectModal = ({ project, onClose }) => {
         };
         document.addEventListener("keydown", handleKeyDown);
         document.body.style.overflow = "hidden";
+        if (window.__lenis) window.__lenis.stop();
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
             document.body.style.overflow = "";
+            if (window.__lenis) window.__lenis.start();
         };
     }, [project, onClose]);
 

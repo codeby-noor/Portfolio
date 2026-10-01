@@ -1,4 +1,5 @@
 import { FaGraduationCap, FaLaptopCode, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { SplitWords } from "./Reveal";
 import "../styles/education.css";
 
 const educationData = [
@@ -36,13 +37,13 @@ const Education = () => {
     return (
         <section id="education" className="section education-section">
             <div className="container">
-                <div className="section-header">
+                <div className="section-header" data-reveal="rise">
                     <div className="section-eyebrow">
                         <span className="section-eyebrow-dot" />
                         <span>Background & Training</span>
                     </div>
                     <h2 className="section-title">
-                        Education & practical development.
+                        <SplitWords text="Education & practical development." />
                     </h2>
                     <p className="section-description">
                         Academic background in computer applications combined with intensive modern full-stack development training.
@@ -51,7 +52,7 @@ const Education = () => {
 
                 <div className="education-timeline">
                     {educationData.map((item, idx) => (
-                        <div key={idx} className="education-card">
+                        <div key={idx} className="education-card" data-reveal="rise" data-delay={String(idx * 0.08)}>
                             <div className="education-card-top">
                                 <div className="education-badge-group">
                                     <span className="badge badge--accent">{item.type}</span>
