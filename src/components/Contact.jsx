@@ -143,7 +143,7 @@ const Contact = () => {
                                 </a>
 
                                 <a
-                                    href="https://www.linkedin.com/in/mahenoor-shaikh"
+                                    href="https://www.linkedin.com/in/mahenoor-shaikh-994125350/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn btn--secondary btn--sm"
