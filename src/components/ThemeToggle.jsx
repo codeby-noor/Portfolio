@@ -9,7 +9,7 @@ const ThemeToggle = ({ theme, onToggle }) => {
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
-            {theme === "dark" ? <FaSun /> : <FaMoon />}
+            {theme === "dark" ? <FaSun aria-hidden="true" /> : <FaMoon aria-hidden="true" />}
         </button>
     );
 };

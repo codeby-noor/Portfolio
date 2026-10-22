@@ -1,71 +1,165 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="theme-color" content="#F5F0E8" />
+        <meta name="color-scheme" content="light dark" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="canonical" href="https://portfolio-two-rosy-34.vercel.app/" />
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f7f6f2" />
-    <link rel="canonical" href="https://mahenoorshaikh.com/" />
-    
-    <!-- Primary Meta Tags -->
-    <title>Mahenoor Shaikh | Full Stack Developer</title>
-    <meta name="title" content="Mahenoor Shaikh | Full Stack Developer" />
-    <meta name="description"
-        content="Mahenoor Shaikh is a Full Stack Developer building responsive web applications and practical digital products with modern frontend and backend technologies." />
-    <meta name="author" content="Mahenoor Shaikh" />
-    <meta name="keywords"
-        content="Mahenoor Shaikh, Full Stack Developer, React Developer, Node.js Developer, Express.js, REST APIs, MySQL, MongoDB, Mongoose, Web Developer, Portfolio" />
+        <title>Mahenoor Shaikh | Full Stack Developer</title>
+        <meta
+            name="description"
+            content="Explore Mahenoor Shaikh’s portfolio featuring full-stack web development, React.js, Node.js, REST APIs, database integration, and selected software projects."
+        />
+        <meta name="author" content="Mahenoor Shaikh" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mahenoorshaikh.com/" />
-    <meta property="og:title" content="Mahenoor Shaikh | Full Stack Developer" />
-    <meta property="og:description"
-        content="Explore selected projects, technical skills and professional background." />
-    <meta property="og:site_name" content="Mahenoor Shaikh Portfolio" />
-    <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://portfolio-two-rosy-34.vercel.app/" />
+        <meta property="og:title" content="Mahenoor Shaikh | Full Stack Developer" />
+        <meta
+            property="og:description"
+            content="Full Stack Developer building responsive web applications with React.js, Node.js, REST APIs, and databases."
+        />
+        <meta property="og:site_name" content="Mahenoor Shaikh" />
+        <meta property="og:locale" content="en_IN" />
+        <meta property="og:image" content="https://portfolio-two-rosy-34.vercel.app/social-card.png" />
+        <meta property="og:image:secure_url" content="https://portfolio-two-rosy-34.vercel.app/social-card.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+            property="og:image:alt"
+            content="Mahenoor Shaikh, Full Stack Developer — React.js, Node.js, Express.js, MySQL, and MongoDB"
+        />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mahenoor Shaikh | Full Stack Developer" />
-    <meta name="twitter:description"
-        content="Selected projects, skills and experience from Full Stack Developer Mahenoor Shaikh." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Mahenoor Shaikh | Full Stack Developer" />
+        <meta
+            name="twitter:description"
+            content="Selected projects and professional background in full-stack web development."
+        />
+        <meta name="twitter:image" content="https://portfolio-two-rosy-34.vercel.app/social-card.png" />
+        <meta
+            name="twitter:image:alt"
+            content="Mahenoor Shaikh, Full Stack Developer — React.js, Node.js, Express.js, MySQL, and MongoDB"
+        />
 
-    <!-- Structured Data: Person (update `url` when the final domain is set) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Mahenoor Shaikh",
-        "jobTitle": "Full Stack Web Developer",
-        "description": "Full Stack Developer building responsive web applications and practical digital products.",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Navsari",
-            "addressRegion": "Gujarat",
-            "addressCountry": "IN"
-        },
-        "url": "https://mahenoorshaikh.com/",
-        "sameAs": [
-            "https://github.com/codeby-noor",
-            "https://www.linkedin.com/in/mahenoor-shaikh-994125350/"
-        ],
-        "knowsAbout": ["React", "JavaScript", "Node.js", "Express.js", "MySQL", "MongoDB", "Mongoose", "REST APIs", "Responsive Web Development"]
-    }
-    </script>
+        <script>
+            (function () {
+                var theme = "light";
+                try {
+                    var savedTheme = window.localStorage.getItem("portfolio-theme");
+                    if (savedTheme === "dark" || savedTheme === "light") theme = savedTheme;
+                } catch (error) {
+                    theme = "light";
+                }
+                document.documentElement.setAttribute("data-theme", theme);
+            })();
+        </script>
 
-    <!-- Google Fonts: Archivo -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
-</head>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "Person",
+                        "@id": "https://portfolio-two-rosy-34.vercel.app/#person",
+                        "name": "Mahenoor Shaikh",
+                        "jobTitle": "Full Stack Developer",
+                        "description": "Full Stack Developer building responsive web applications using React.js, Node.js, Express.js, MySQL, and MongoDB.",
+                        "url": "https://portfolio-two-rosy-34.vercel.app/",
+                        "image": "https://portfolio-two-rosy-34.vercel.app/social-card.png",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Navsari",
+                            "addressRegion": "Gujarat",
+                            "addressCountry": "IN"
+                        },
+                        "sameAs": [
+                            "https://github.com/codeby-noor",
+                            "https://www.linkedin.com/in/mahenoor-shaikh-994125350/"
+                        ],
+                        "knowsAbout": [
+                            "React.js",
+                            "JavaScript",
+                            "Node.js",
+                            "Express.js",
+                            "REST API development",
+                            "MySQL",
+                            "MongoDB",
+                            "Responsive web development"
+                        ]
+                    },
+                    {
+                        "@type": "WebSite",
+                        "@id": "https://portfolio-two-rosy-34.vercel.app/#website",
+                        "url": "https://portfolio-two-rosy-34.vercel.app/",
+                        "name": "Mahenoor Shaikh | Full Stack Developer",
+                        "inLanguage": "en",
+                        "creator": {
+                            "@id": "https://portfolio-two-rosy-34.vercel.app/#person"
+                        }
+                    },
+                    {
+                        "@type": "ProfilePage",
+                        "@id": "https://portfolio-two-rosy-34.vercel.app/#profile",
+                        "url": "https://portfolio-two-rosy-34.vercel.app/",
+                        "name": "Mahenoor Shaikh | Full Stack Developer",
+                        "description": "Professional profile and selected software projects by Mahenoor Shaikh, Full Stack Developer.",
+                        "inLanguage": "en",
+                        "mainEntity": {
+                            "@id": "https://portfolio-two-rosy-34.vercel.app/#person"
+                        },
+                        "isPartOf": {
+                            "@id": "https://portfolio-two-rosy-34.vercel.app/#website"
+                        }
+                    }
+                ]
+            }
+        </script>
 
-<body>
-    <noscript>You need to enable JavaScript to view this portfolio.</noscript>
-    <div id="root"></div>
-</body>
-
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+                rel="stylesheet"
+            />
+        </noscript>
+    </head>
+    <body>
+        <noscript>
+            <main>
+                <h1>Mahenoor Shaikh — Full Stack Developer</h1>
+                <p>
+                    Full Stack Developer based in Navsari, India, building responsive web applications with React.js,
+                    Node.js, Express.js, MySQL, and MongoDB.
+                </p>
+                <h2>Selected projects</h2>
+                <ul>
+                    <li>Full Stack E-Commerce Platform — product browsing, shopping cart functionality, REST APIs, and MySQL.</li>
+                    <li>CodeQuest — a coding-learning platform with six worlds and 97 missions.</li>
+                    <li><a href="https://www.aijamin.in/">AI Jamin — Real Estate Marketplace</a></li>
+                </ul>
+                <p>
+                    <a href="/resume.pdf">Download Mahenoor Shaikh’s resume</a>
+                    · <a href="mailto:Mahenoorshaikh0408@gmail.com">Contact Mahenoor Shaikh</a>
+                </p>
+            </main>
+        </noscript>
+        <div id="root"></div>
+    </body>
 </html>

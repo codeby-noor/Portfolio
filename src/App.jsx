@@ -9,14 +9,13 @@ import Education from "./components/Education";
 import Languages from "./components/Languages";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import { initializeAnalytics } from "./analytics";
+import { MotionConfig } from "motion/react";
 import "./styles/redesign.css";
 
 const getInitialTheme = () => {
-    try {
-        return localStorage.getItem("portfolio-theme") || "light";
-    } catch {
-        return "light";
-    }
+    if (typeof document === "undefined") return "light";
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
 };
 
 const App = () => {
@@ -32,24 +31,7 @@ const App = () => {
     }, [theme]);
 
     useEffect(() => {
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (reduceMotion || !("IntersectionObserver" in window)) return undefined;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-            });
-        }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
-
-        document.querySelectorAll("[data-reveal]").forEach((element) => observer.observe(element));
-        document.body.classList.add("motion-ready");
-
-        return () => {
-            observer.disconnect();
-            document.body.classList.remove("motion-ready");
-        };
+        initializeAnalytics();
     }, []);
 
     const handleToggleTheme = () => {
@@ -57,21 +39,23 @@ const App = () => {
     };
 
     return (
-        <div className="portfolio-app">
-            <a className="skip-link" href="#main-content">Skip to content</a>
-            <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
-            <main id="main-content">
-                <Hero />
-                <About />
-                <Skills />
-                <Projects />
-                <Experience />
-                <Education />
-                <Languages />
-                <Contact />
-            </main>
-            <Footer />
-        </div>
+        <MotionConfig reducedMotion="user">
+            <div className="portfolio-app">
+                <a className="skip-link" href="#main-content">Skip to content</a>
+                <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
+                <main id="main-content">
+                    <Hero />
+                    <About />
+                    <Skills />
+                    <Projects />
+                    <Experience />
+                    <Education />
+                    <Languages />
+                    <Contact />
+                </main>
+                <Footer />
+            </div>
+        </MotionConfig>
     );
 };
 

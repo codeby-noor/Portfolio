@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mahenoorshaikh.com/sitemap.xml
+Sitemap: https://portfolio-two-rosy-34.vercel.app/sitemap.xml

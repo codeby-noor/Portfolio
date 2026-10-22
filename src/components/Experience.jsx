@@ -1,14 +1,14 @@
 const Experience = () => (
     <section id="experience" className="section-block" aria-labelledby="experience-title">
         <div className="content-wrap">
-            <div className="section-heading section-heading--row" data-reveal="rise">
+            <div className="section-heading section-heading--row">
                 <div>
                     <p className="eyebrow">05 — Experience</p>
                     <h2 id="experience-title">Professional experience</h2>
                 </div>
             </div>
 
-            <article className="experience-entry" data-reveal="rise">
+            <article className="experience-entry">
                 <div className="experience-entry__date">
                     <span>April 2026 – September 2026</span>
                     <span>Navsari, India</span>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaBars, FaTimes, FaFileDownload } from "react-icons/fa";
 import ThemeToggle from "./ThemeToggle";
 
@@ -16,14 +16,18 @@ const navLinks = [
 const Navbar = ({ theme, onToggleTheme }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
+    const menuToggleRef = useRef(null);
 
     useEffect(() => {
         const closeOnEscape = (event) => {
-            if (event.key === "Escape") setMenuOpen(false);
+            if (event.key === "Escape" && menuOpen) {
+                setMenuOpen(false);
+                menuToggleRef.current?.focus();
+            }
         };
         window.addEventListener("keydown", closeOnEscape);
         return () => window.removeEventListener("keydown", closeOnEscape);
-    }, []);
+    }, [menuOpen]);
 
     useEffect(() => {
         if (!("IntersectionObserver" in window)) return undefined;
@@ -52,6 +56,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
                 </a>
 
                 <button
+                    ref={menuToggleRef}
                     className="menu-toggle"
                     type="button"
                     aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}

@@ -1,6 +1,6 @@
 const Contact = () => (
     <section id="contact" className="section-block contact-section" aria-labelledby="contact-title">
-        <div className="content-wrap contact-content" data-reveal="rise">
+        <div className="content-wrap contact-content">
             <p className="eyebrow">08 — Contact</p>
             <h2 id="contact-title">Let’s build something meaningful.</h2>
             <p className="contact-intro">For roles, collaborations or a conversation about my work, get in touch.</p>

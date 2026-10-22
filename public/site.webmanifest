@@ -1,0 +1,30 @@
+{
+    "name": "Mahenoor Shaikh | Full Stack Developer",
+    "short_name": "Mahenoor Shaikh",
+    "description": "Portfolio of Mahenoor Shaikh, Full Stack Developer.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#F5F0E8",
+    "theme_color": "#F5F0E8",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "type": "image/svg+xml",
+            "sizes": "any",
+            "purpose": "any"
+        },
+        {
+            "src": "/favicon-32.png",
+            "type": "image/png",
+            "sizes": "32x32",
+            "purpose": "any"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "type": "image/png",
+            "sizes": "180x180",
+            "purpose": "any"
+        }
+    ]
+}

@@ -25,14 +25,14 @@ const Skills = () => {
     return (
         <section id="skills" className="section-block" aria-labelledby="skills-title">
             <div className="content-wrap">
-                <div className="section-heading section-heading--row" data-reveal="rise">
+                <div className="section-heading section-heading--row">
                     <div>
                         <p className="eyebrow">03 — Skills</p>
                         <h2 id="skills-title">Technical toolkit</h2>
                     </div>
                     <p className="section-intro">A practical stack for building and connecting web applications.</p>
                 </div>
-                <div className="skills-explorer" data-reveal="rise">
+                <div className="skills-explorer">
                     <div
                         className="skill-tabs"
                         role="tablist"

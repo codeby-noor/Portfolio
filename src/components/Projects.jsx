@@ -1,4 +1,5 @@
 import { projects } from "../data/projects";
+import { motion, useReducedMotion } from "motion/react";
 
 const ProjectIllustration = ({ project }) => {
     if (project.id === "ecommerce") {
@@ -70,51 +71,69 @@ const ProjectIllustration = ({ project }) => {
     );
 };
 
-const ProjectCard = ({ project }) => (
-    <article className="project-card" data-reveal="rise">
-        <div className="project-cover">
-            {project.image ? (
-                <img src={project.image} alt={`${project.title} project screenshot`} loading="lazy" />
-            ) : (
-                <div className="project-cover__illustration">
-                    <ProjectIllustration project={project} />
-                    <span className="project-cover__caption">Illustrative preview · not a screenshot</span>
+const ProjectCard = ({ project }) => {
+    const reduceMotion = useReducedMotion();
+
+    return (
+        <motion.article
+            className="project-card"
+            initial={false}
+            whileInView={reduceMotion ? undefined : { opacity: [0, 1], y: [16, 0] }}
+            viewport={{ once: true, amount: 0.12 }}
+            transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={reduceMotion ? undefined : { y: -3 }}
+        >
+            <div className="project-cover">
+                {project.image ? (
+                    <img
+                        src={project.image}
+                        alt={`${project.title} project screenshot`}
+                        width="640"
+                        height="400"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                ) : (
+                    <div className="project-cover__illustration">
+                        <ProjectIllustration project={project} />
+                        <span className="project-cover__caption">Illustrative preview · not a screenshot</span>
+                    </div>
+                )}
+            </div>
+            <div className="project-card__body">
+                <div className="project-card__heading">
+                    <p className="eyebrow"><span className="project-number">{project.number}</span> / {project.type}</p>
+                    <h3>{project.title}</h3>
+                    <p className="project-card__summary">{project.summary}</p>
                 </div>
-            )}
-        </div>
-        <div className="project-card__body" data-reveal="rise">
-            <div className="project-card__heading">
-                <p className="eyebrow"><span className="project-number">{project.number}</span> / {project.type}</p>
-                <h3>{project.title}</h3>
-                <p className="project-card__summary">{project.summary}</p>
-            </div>
-            <div className="project-contribution">
-                <p className="project-contribution__label">Contribution</p>
-                <ul>
-                    {project.contributions.map((contribution) => <li key={contribution}>{contribution}</li>)}
-                </ul>
-            </div>
-            {project.technologies.length > 0 && (
-                <ul className="tag-list" aria-label="Technologies">
-                    {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
-                </ul>
-            )}
-            <div className="project-links">
-                {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">Live project <span aria-hidden="true">↗</span></a>
+                <div className="project-contribution">
+                    <p className="project-contribution__label">Contribution</p>
+                    <ul>
+                        {project.contributions.map((contribution) => <li key={contribution}>{contribution}</li>)}
+                    </ul>
+                </div>
+                {project.technologies.length > 0 && (
+                    <ul className="tag-list" aria-label="Technologies">
+                        {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+                    </ul>
                 )}
-                {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
-                )}
+                <div className="project-links">
+                    {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">Live project <span aria-hidden="true">↗</span></a>
+                    )}
+                    {project.githubUrl && (
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
+                    )}
+                </div>
             </div>
-        </div>
-    </article>
-);
+        </motion.article>
+    );
+};
 
 const Projects = () => (
-    <section id="projects" className="section-block section-block--tint" aria-labelledby="projects-title">
+    <section id="projects" className="section-block section-block--projects" aria-labelledby="projects-title">
         <div className="content-wrap">
-            <div className="section-heading section-heading--row" data-reveal="rise">
+            <div className="section-heading section-heading--row">
                 <div>
                     <p className="eyebrow">04 — Projects</p>
                     <h2 id="projects-title">Selected work</h2>
