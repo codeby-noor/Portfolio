@@ -1,144 +1,20 @@
-import { FaGraduationCap, FaLaptopCode, FaCheckCircle, FaBriefcase, FaArrowRight } from "react-icons/fa";
-import { SplitWords } from "./Reveal";
-import "../styles/about.css";
-
-const aboutHighlights = [
-    {
-        title: "Academic Background",
-        subtitle: "BCA (Bachelor of Computer Applications)",
-        icon: FaGraduationCap,
-        desc: "3-year curriculum covering data structures, relational database systems (SQL), software development methodologies, and computing fundamentals (2022–2025)."
-    },
-    {
-        title: "Full-Stack Development",
-        subtitle: "Practical Web Engineering",
-        icon: FaLaptopCode,
-        desc: "Hands-on engineering training with React (Router, Hooks, Redux Toolkit), Node.js, Express.js, PostgreSQL/Supabase, and RESTful architectures (2025–2026)."
-    },
-    {
-        title: "Current Focus & Availability",
-        subtitle: "Ready for Engineering Roles",
-        icon: FaBriefcase,
-        desc: "Seeking Full Stack / Frontend / Backend Developer roles with engineering teams in North America, Europe, and global remote environments."
-    }
-];
-
-const engineeringPractices = [
-    "Building modular React interfaces with Hooks, Router, Redux Toolkit, and responsive Bootstrap/CSS",
-    "Designing RESTful APIs with Express.js — request validation, CORS, and auth-aware routing",
-    "Working with PostgreSQL via Supabase: structured tables, authentication, and analytics queries",
-    "Modeling relational data in MySQL (keys, joins) with additional MongoDB document experience",
-    "Testing APIs with Postman, managing Git history, and shipping responsive production builds"
-];
-
-const capabilities = [
-    { term: "Frontend", desc: "React interfaces with routing, state, and responsive layouts" },
-    { term: "Backend", desc: "Node.js + Express REST APIs with validation and CORS" },
-    { term: "Database", desc: "PostgreSQL via Supabase; MySQL relational modeling" },
-    { term: "Auth & APIs", desc: "Supabase Auth sessions and third-party API integration" },
-    { term: "Responsive UI", desc: "Mobile-first builds, tested across viewports" }
-];
-
-const workflowSteps = [
-    { step: "01", title: "Understand", desc: "Define requirements & data models" },
-    { step: "02", title: "Plan", desc: "Structure components & API routes" },
-    { step: "03", title: "Build", desc: "Develop UI, server & database logic" },
-    { step: "04", title: "Test", desc: "Validate endpoints & responsiveness" },
-    { step: "05", title: "Refine", desc: "Clean code & handle edge cases" },
-    { step: "06", title: "Deploy", desc: "Build & configure hosting environment" }
-];
-
-const About = () => {
-    return (
-        <section id="about" className="section about-section">
-            <div className="container">
-                <div className="section-header" data-reveal="rise">
-                    <div className="section-eyebrow">
-                        <span className="section-index">01</span>
-                        <span>Background & Technical Focus</span>
-                    </div>
-                    <h2 className="section-title">
-                        <SplitWords text="About my background and approach." />
-                    </h2>
-                    <p className="section-description">
-                        Full Stack Developer working across frontend development, backend APIs, databases, authentication, analytics, and responsive interfaces.
-                    </p>
-                </div>
-
-                <div className="about-capabilities" data-reveal="rise">
-                    <h3 className="about-cap-heading">What I build</h3>
-                    <dl className="about-cap-list">
-                        {capabilities.map((cap) => (
-                            <div key={cap.term} className="about-cap-item">
-                                <dt>{cap.term}</dt>
-                                <dd>{cap.desc}</dd>
-                            </div>
-                        ))}
-                    </dl>
-                </div>
-
-                <div className="about-grid">
-                    {/* Left Column: Summary */}
-                    <div className="about-story" data-reveal="rise">
-                        <h3 className="about-story-title" data-parallax="0.06">
-                            Practical web development grounded in computer science fundamentals.
-                        </h3>
-                        <p className="about-story-p">
-                            I am a <strong>Full Stack Developer</strong> based in Navsari, Gujarat, India. During my <strong>Bachelor of Computer Applications (BCA)</strong> degree (2022–2025), I developed foundational knowledge in database systems, data structures, and software principles.
-                        </p>
-                        <p className="about-story-p">
-                            To apply these concepts to full-stack applications, I completed intensive <strong>Full-Stack Web Development</strong> training (2025–2026) and developed professional projects during my internship.
-                        </p>
-
-                        <div className="about-story-commitments">
-                            <h4 className="about-commitments-heading">Engineering Practices:</h4>
-                            <ul className="about-commitments-list">
-                                {engineeringPractices.map((practice, idx) => (
-                                    <li key={idx} className="about-commitment-item">
-                                        <FaCheckCircle className="about-check-icon" aria-hidden="true" />
-                                        <span>{practice}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-
-                    {/* Right Column: Cards */}
-                    <div className="about-cards" data-reveal="scale" data-delay="0.1">
-                        {aboutHighlights.map((item, idx) => (
-                            <div key={idx} className="about-card" data-reveal="rise" data-delay={String(idx * 0.06)}>
-                                <div className="about-card-header">
-                                    <item.icon className="about-card-icon" />
-                                    <div>
-                                        <h4 className="about-card-title">{item.title}</h4>
-                                        <span className="about-card-subtitle">{item.subtitle}</span>
-                                    </div>
-                                </div>
-                                <p className="about-card-desc">{item.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Development Workflow Strip */}
-                <div className="about-workflow-wrap" data-reveal="clip">
-                    <h4 className="about-workflow-heading">Development Approach:</h4>
-                    <div className="about-workflow-steps">
-                        {workflowSteps.map((ws, idx) => (
-                            <div key={ws.step} className="about-workflow-step">
-                                <div className="workflow-step-num">{ws.step}</div>
-                                <div className="workflow-step-title">{ws.title}</div>
-                                <div className="workflow-step-desc">{ws.desc}</div>
-                                {idx < workflowSteps.length - 1 && (
-                                    <FaArrowRight className="workflow-arrow" aria-hidden="true" />
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+const About = () => (
+    <section id="about" className="section-block" aria-labelledby="about-title">
+        <div className="content-wrap split-section">
+            <div className="section-heading" data-reveal="rise">
+                <p className="eyebrow">01 — About</p>
+                <h2 id="about-title">A practical full-stack foundation</h2>
             </div>
-        </section>
-    );
-};
+            <div className="about-copy" data-reveal="rise">
+                <p>
+                    My background combines a Bachelor of Computer Applications with focused full-stack web development training at Creative Design &amp; Multimedia Institute. At Viby Solution, I worked on web application features, responsive React interfaces, REST API integrations, and database-connected functionality.
+                </p>
+                <p>
+                    Across project work, I have used JavaScript, React, Node.js, Express.js, MySQL, and MongoDB, alongside authentication integrations. I’m interested in building responsive applications where clear user experiences are supported by reliable backend behavior, thoughtful data handling, and maintainable components. I also value collaborating through implementation and debugging to keep features consistent from interface to data layer.
+                </p>
+            </div>
+        </div>
+    </section>
+);
 
 export default About;

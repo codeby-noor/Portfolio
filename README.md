@@ -1,6 +1,6 @@
 # Mahenoor Shaikh — Full Stack Developer Portfolio
 
-A responsive developer portfolio built with React.js showcasing full-stack applications, technical projects, skills, and education.
+A responsive React portfolio presenting selected projects, technical skills, experience, education, and contact links.
 
 ---
 
@@ -8,21 +8,17 @@ A responsive developer portfolio built with React.js showcasing full-stack appli
 
 This repository contains the source code for the personal developer portfolio of **Mahenoor Shaikh**, a Full Stack Developer based in Navsari, Gujarat, India.
 
-The portfolio provides an overview of:
-- **Core Specialization**: Full-stack web application development across React, Node.js, Express, PostgreSQL/Supabase, MySQL, MongoDB, and REST APIs.
-- **Engineering Projects**: In-depth case studies covering problem statements, technical decisions, data flows, and project details.
-- **Academic Foundation**: Bachelor of Computer Applications (BCA, 2022–2025) and professional full-stack training (2025–2026).
-- **Direct Contact & Resume Access**: Access to the downloadable PDF resume, email, LinkedIn, and GitHub.
+The portfolio provides a concise overview of full-stack development work, a BCA degree, and direct contact and resume links.
 
 ---
 
 ## Features
 
-- **Project Case Studies**: Modal breakdowns for each project covering architecture, technical decisions, and implementation details.
-- **Skills Overview**: Categorized technical skills connected to the project data.
-- **Dark & Light Themes**: Theme switcher with stored local preferences and accessible contrast-focused styling.
-- **Responsive Layouts**: CSS layouts for mobile, tablet, and desktop viewports.
-- **Semantic Markup and Metadata**: Semantic HTML structure, keyboard interaction support, Open Graph metadata, and Twitter cards.
+- **Selected projects**: Three full-stack project summaries with clearly labelled illustrative previews and links shown only when available.
+- **Interactive skills**: Keyboard-accessible grouped skill tabs.
+- **Experience, education, and languages**: Separate professional and academic history sections, plus a languages list.
+- **Light and dark themes**: Theme choice is stored locally when browser storage is available.
+- **Responsive and accessible**: Semantic sections, active anchor navigation, keyboard controls, reduced-motion support, and responsive layouts.
 
 ---
 
@@ -33,40 +29,15 @@ The portfolio provides an overview of:
 - **Vanilla CSS3** (Custom properties design system, Flexbox, CSS Grid)
 - **React Icons** (FontAwesome, SimpleIcons)
 
-### Backend & Databases (Showcased in Project Case Studies)
-- **Node.js** & **Express.js** (RESTful API architecture, middleware, routing)
-- **MySQL** (Relational schemas, foreign key constraints, aggregate queries)
-- **MongoDB** (Document collections, message persistence)
-- **Socket.io** (WebSocket bidirectional communication)
-
-### Tooling & Workflow
-- **Git** & **GitHub** (Version control)
-- **Postman** (API endpoint testing)
-- **VS Code** & **npm**
-
 ---
 
 ## Featured Projects
 
-1. **Full-Stack E-Commerce Application**:
-   - *Stack*: React.js, Node.js, Express.js, MySQL, REST APIs, CSS3
-   - *Features*: Product catalog, category filters, cart persistence, checkout validation, administrative inventory management.
-   - *Source*: Repository link will be added when the project repository is published.
+1. **Full Stack E-Commerce Platform** — Product listings, shopping cart functionality, React interface, REST APIs, and MySQL-backed product data.
+2. **CodeQuest** — Gamified coding-learning platform with six worlds, 97 missions, progress, XP, levels, and achievements. No public demo or source link is available.
+3. **AI Jamin — Real Estate Marketplace** — Property listings, search, detailed pages, API integrations, and authentication. [Live project](https://www.aijamin.in/).
 
-2. **Broker Streets — Real Estate Platform**:
-   - *Stack*: React.js, JavaScript (ES6+), Bootstrap, CSS3, REST APIs
-   - *Features*: Multi-parameter property search, price/location filtering, detailed property views, broker inquiry lead capture.
-   - *Source*: Repository link will be added when the project repository is published.
-
-3. **Real-Time Chat Application**:
-   - *Stack*: React.js, Node.js, Express.js, Socket.io, MongoDB
-   - *Features*: WebSocket bidirectional messaging, active presence detection, typing indicators, MongoDB message storage.
-   - *Source*: Repository link will be added when the project repository is published.
-
-4. **Admin Analytics Dashboard**:
-   - *Stack*: React.js, Node.js, Express.js, MySQL, REST APIs, CSS3
-   - *Features*: KPI summary metrics, data visualization charts, user management data table with search and pagination.
-   - *Source*: Repository link will be added when the project repository is published.
+Project screenshot assets are not currently included. The project covers are illustrative SVG artwork, not screenshots. Add verified images under `public/projects/` and set each project's `image` field in `src/data/projects.js` when screenshots are available.
 
 ---
 

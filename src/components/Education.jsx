@@ -1,96 +1,32 @@
-import { FaGraduationCap, FaLaptopCode, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { SplitWords } from "./Reveal";
-import "../styles/education.css";
-
-const educationData = [
-    {
-        period: "2022 — 2025",
-        degree: "Bachelor of Computer Applications (BCA)",
-        institution: "Narnala College of Professional and Applied Science",
-        location: "Gujarat, India",
-        type: "Degree",
-        description:
-            "Comprehensive university degree covering core computer science principles, database management systems (DBMS), software engineering methodologies, object-oriented programming, and computer networks.",
-        highlights: [
-            "Data Structures & Algorithms fundamentals",
-            "Relational Database Systems (SQL & Schema Modeling)",
-            "Web Development & Software Engineering principles"
-        ]
-    },
-    {
-        period: "2025 — 2026",
-        degree: "Full-Stack Web Development Specialization",
-        institution: "Creative Design & Multimedia Institute (CDMI)",
-        location: "Surat / Navsari, Gujarat",
-        type: "Professional Program",
-        description:
-            "Intensive professional engineering training focused on end-to-end full-stack development, modern JavaScript (ES6+), React component architectures, Node.js & Express server design, and database integration.",
-        highlights: [
-            "Full-stack MERN & PERN application architectures",
-            "RESTful API design, authentication, and error handling",
-            "Real-world application deployments and Git team workflows"
-        ]
-    }
-];
-
-const Education = () => {
-    return (
-        <section id="education" className="section education-section">
-            <div className="container">
-                <div className="section-header" data-reveal="rise">
-                    <div className="section-eyebrow">
-                        <span className="section-index">04</span>
-                        <span>Background & Training</span>
-                    </div>
-                    <h2 className="section-title">
-                        <SplitWords text="Education & practical development." />
-                    </h2>
-                    <p className="section-description">
-                        Academic background in computer applications combined with intensive modern full-stack development training.
-                    </p>
-                </div>
-
-                <div className="education-timeline">
-                    {educationData.map((item, idx) => (
-                        <div key={idx} className="education-card" data-reveal="rise" data-delay={String(idx * 0.08)}>
-                            <div className="education-card-top">
-                                <div className="education-badge-group">
-                                    <span className="badge badge--accent">{item.type}</span>
-                                    <span className="education-period">
-                                        <FaCalendarAlt aria-hidden="true" />
-                                        <span>{item.period}</span>
-                                    </span>
-                                </div>
-                                <div className="education-location">
-                                    <FaMapMarkerAlt aria-hidden="true" />
-                                    <span>{item.location}</span>
-                                </div>
-                            </div>
-
-                            <div className="education-body">
-                                <div className="education-icon-box">
-                                    {idx === 0 ? <FaGraduationCap /> : <FaLaptopCode />}
-                                </div>
-                                <div className="education-details">
-                                    <h3 className="education-degree">{item.degree}</h3>
-                                    <div className="education-institution">{item.institution}</div>
-                                    <p className="education-desc">{item.description}</p>
-
-                                    <div className="education-highlights">
-                                        {item.highlights.map((h, i) => (
-                                            <span key={i} className="badge">
-                                                {h}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+const Education = () => (
+    <section id="education" className="section-block section-block--tint" aria-labelledby="education-title">
+        <div className="content-wrap">
+            <div className="section-heading section-heading--row" data-reveal="rise">
+                <div>
+                    <p className="eyebrow">06 — Education</p>
+                    <h2 id="education-title">Academic background</h2>
                 </div>
             </div>
-        </section>
-    );
-};
+            <div className="education-list">
+                <article className="education-entry" data-reveal="rise">
+                    <p className="education-entry__year">2025–2026<br /><span>Navsari, Gujarat</span></p>
+                    <div>
+                        <h3>Full Stack Web Development</h3>
+                        <p className="education-entry__institution">Creative Design &amp; Multimedia Institute</p>
+                        <p className="education-entry__description">Practical frontend and backend development using modern web technologies, including React.js, JavaScript, Node.js, Express.js, APIs, and databases.</p>
+                    </div>
+                </article>
+                <article className="education-entry" data-reveal="rise">
+                    <p className="education-entry__year">2022–2025<br /><span>Navsari, Gujarat</span></p>
+                    <div>
+                        <h3>Bachelor of Computer Applications (BCA)</h3>
+                        <p className="education-entry__institution">Naranlala College of Professional and Applied Science</p>
+                        <p className="education-entry__description">Computer applications studies covering programming, databases, and software development foundations.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+);
 
 export default Education;
