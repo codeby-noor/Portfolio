@@ -1,5 +1,6 @@
 import { projects } from "../data/projects";
 import { motion, useReducedMotion } from "motion/react";
+import Reveal from "./Reveal";
 
 const ProjectIllustration = ({ project }) => {
     if (project.id === "ecommerce") {
@@ -78,7 +79,7 @@ const ProjectCard = ({ project }) => {
         <motion.article
             className="project-card"
             initial={false}
-            whileInView={reduceMotion ? undefined : { opacity: [0, 1], y: [16, 0] }}
+            whileInView={reduceMotion ? undefined : { y: [14, 0] }}
             viewport={{ once: true, amount: 0.12 }}
             transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
             whileHover={reduceMotion ? undefined : { y: -3 }}
@@ -132,7 +133,7 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => (
     <section id="projects" className="section-block section-block--projects" aria-labelledby="projects-title">
-        <div className="content-wrap">
+        <Reveal className="content-wrap" y={14}>
             <div className="section-heading section-heading--row">
                 <div>
                     <p className="eyebrow">04 — Projects</p>
@@ -143,7 +144,7 @@ const Projects = () => (
             <div className="project-grid">
                 {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
             </div>
-        </div>
+        </Reveal>
     </section>
 );
 

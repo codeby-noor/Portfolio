@@ -1,6 +1,8 @@
+import Reveal from "./Reveal";
+
 const Contact = () => (
     <section id="contact" className="section-block contact-section" aria-labelledby="contact-title">
-        <div className="content-wrap contact-content">
+        <Reveal className="content-wrap contact-content" y={14}>
             <p className="eyebrow">08 — Contact</p>
             <h2 id="contact-title">Let’s build something meaningful.</h2>
             <p className="contact-intro">For roles, collaborations or a conversation about my work, get in touch.</p>
@@ -10,7 +12,7 @@ const Contact = () => (
                 <a href="https://github.com/codeby-noor" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="/resume.pdf" download>Resume</a>
             </div>
-        </div>
+        </Reveal>
     </section>
 );
 

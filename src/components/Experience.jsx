@@ -1,6 +1,8 @@
+import Reveal from "./Reveal";
+
 const Experience = () => (
     <section id="experience" className="section-block" aria-labelledby="experience-title">
-        <div className="content-wrap">
+        <Reveal className="content-wrap" y={14}>
             <div className="section-heading section-heading--row">
                 <div>
                     <p className="eyebrow">05 — Experience</p>
@@ -24,7 +26,7 @@ const Experience = () => (
                     <p className="experience-entry__stack">React.js · Node.js · Express.js · REST APIs · MySQL · MongoDB</p>
                 </div>
             </article>
-        </div>
+        </Reveal>
     </section>
 );
 

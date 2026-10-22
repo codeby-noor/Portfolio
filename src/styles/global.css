@@ -45,8 +45,8 @@ button {
 }
 
 ::selection {
-    color: #fff;
-    background: var(--color-merlot);
+    color: var(--on-accent);
+    background: var(--accent);
 }
 
 @media (prefers-reduced-motion: reduce) {

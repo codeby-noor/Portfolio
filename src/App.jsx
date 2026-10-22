@@ -15,7 +15,17 @@ import "./styles/redesign.css";
 
 const getInitialTheme = () => {
     if (typeof document === "undefined") return "light";
-    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    const rootTheme = document.documentElement.getAttribute("data-theme");
+    if (rootTheme === "dark" || rootTheme === "light") return rootTheme;
+
+    try {
+        const savedTheme = window.localStorage.getItem("portfolio-theme");
+        if (savedTheme === "dark" || savedTheme === "light") return savedTheme;
+    } catch {
+        // The operating-system preference remains available when storage is blocked.
+    }
+
+    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
 const App = () => {
@@ -23,11 +33,8 @@ const App = () => {
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
-        try {
-            localStorage.setItem("portfolio-theme", theme);
-        } catch {
-            // The theme remains functional when browser storage is unavailable.
-        }
+        const themeColor = theme === "dark" ? "#292126" : "#F5F0E8";
+        document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor);
     }, [theme]);
 
     useEffect(() => {
@@ -35,14 +42,20 @@ const App = () => {
     }, []);
 
     const handleToggleTheme = () => {
-        setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+        const nextTheme = theme === "dark" ? "light" : "dark";
+        setTheme(nextTheme);
+        try {
+            window.localStorage.setItem("portfolio-theme", nextTheme);
+        } catch (error) {
+            console.warn("Unable to save the selected color theme.", error);
+        }
     };
 
     return (
         <MotionConfig reducedMotion="user">
             <div className="portfolio-app">
                 <a className="skip-link" href="#main-content">Skip to content</a>
-                <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
+                <Navbar onToggleTheme={handleToggleTheme} />
                 <main id="main-content">
                     <Hero />
                     <About />

@@ -2,33 +2,35 @@ import { motion, useReducedMotion } from "motion/react";
 
 const Hero = () => {
     const reduceMotion = useReducedMotion();
-    const entrance = reduceMotion ? undefined : {
+    const entrance = (delay) => (reduceMotion ? {} : {
         initial: { opacity: 1, y: 12 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-    };
+        transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
+    });
 
     return (
         <section id="home" className="hero-section" aria-labelledby="hero-title">
             <div className="content-wrap hero-layout">
-                <motion.div className="hero-copy" {...entrance}>
-                    <p className="eyebrow hero-eyebrow">Navsari, India</p>
-                    <h1 id="hero-title"><span>Mahenoor</span> <span>Shaikh</span></h1>
-                    <p className="hero-role">Full Stack Developer</p>
-                    <p className="hero-summary">
-                        Full Stack Developer with hands-on experience building responsive web applications using React.js, Node.js, Express.js, MySQL, and MongoDB. Experienced in REST API development, database integration, authentication, and building practical user-focused digital products.
-                    </p>
-                    <div className="hero-actions">
+                <div className="hero-copy">
+                    <motion.p className="eyebrow hero-eyebrow" {...entrance(0)}>Navsari, India</motion.p>
+                    <motion.h1 id="hero-title" {...entrance(0.06)}>
+                        <span>Mahenoor</span> <span>Shaikh</span>
+                    </motion.h1>
+                    <motion.p className="hero-role" {...entrance(0.12)}>Full Stack Developer</motion.p>
+                    <motion.p className="hero-summary" {...entrance(0.18)}>
+                        I build responsive full-stack web applications, connecting thoughtful React interfaces to REST APIs, authentication, and MySQL or MongoDB data.
+                    </motion.p>
+                    <motion.div className="hero-actions" {...entrance(0.24)}>
                         <a className="button button--primary" href="#projects">View projects</a>
                         <a className="button button--outline" href="/resume.pdf" download>Download resume</a>
-                    </div>
-                    <div className="hero-links" aria-label="Contact and professional profiles">
+                    </motion.div>
+                    <motion.div className="hero-links" aria-label="Contact and professional profiles" {...entrance(0.3)}>
                         <a href="mailto:Mahenoorshaikh0408@gmail.com">Email</a>
                         <a href="https://github.com/codeby-noor" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <a href="https://www.linkedin.com/in/mahenoor-shaikh-994125350/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    </div>
-                </motion.div>
-                <aside className="hero-visual" aria-label="Illustrative application stack: React interface, Node and Express API, MySQL and MongoDB data">
+                    </motion.div>
+                </div>
+                <motion.aside className="hero-visual" aria-label="Illustrative application stack: React interface, Node and Express API, MySQL and MongoDB data" {...entrance(0.2)}>
                     <svg viewBox="0 0 520 340" role="img" aria-labelledby="stack-title stack-description">
                         <title id="stack-title">Application stack</title>
                         <desc id="stack-description">A simple diagram connecting a React interface to a Node and Express API and MySQL and MongoDB data stores.</desc>
@@ -52,7 +54,7 @@ const Hero = () => {
                         <text className="stack-node__detail" x="284" y="299">MongoDB</text>
                     </svg>
                     <span className="hero-visual__caption">Illustrative stack overview</span>
-                </aside>
+                </motion.aside>
             </div>
         </section>
     );

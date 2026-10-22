@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { skillCategories } from "../data/skills";
+import Reveal from "./Reveal";
 
 const Skills = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -24,7 +25,7 @@ const Skills = () => {
 
     return (
         <section id="skills" className="section-block" aria-labelledby="skills-title">
-            <div className="content-wrap">
+            <Reveal className="content-wrap" y={14}>
                 <div className="section-heading section-heading--row">
                     <div>
                         <p className="eyebrow">03 — Skills</p>
@@ -71,7 +72,7 @@ const Skills = () => {
                         </ul>
                     </div>
                 </div>
-            </div>
+            </Reveal>
         </section>
     );
 };

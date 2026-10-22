@@ -57,10 +57,13 @@
                 try {
                     var savedTheme = window.localStorage.getItem("portfolio-theme");
                     if (savedTheme === "dark" || savedTheme === "light") theme = savedTheme;
+                    else if (window.matchMedia("(prefers-color-scheme: dark)").matches) theme = "dark";
                 } catch (error) {
-                    theme = "light";
+                    if (window.matchMedia("(prefers-color-scheme: dark)").matches) theme = "dark";
                 }
                 document.documentElement.setAttribute("data-theme", theme);
+                var themeColor = theme === "dark" ? "#292126" : "#F5F0E8";
+                document.querySelector('meta[name="theme-color"]').setAttribute("content", themeColor);
             })();
         </script>
 

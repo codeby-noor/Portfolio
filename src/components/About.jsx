@@ -1,6 +1,8 @@
+import Reveal from "./Reveal";
+
 const About = () => (
     <section id="about" className="section-block" aria-labelledby="about-title">
-        <div className="content-wrap split-section">
+        <Reveal className="content-wrap split-section" y={14}>
             <div className="section-heading">
                 <p className="eyebrow">01 — About</p>
                 <h2 id="about-title">A practical full-stack foundation</h2>
@@ -13,7 +15,7 @@ const About = () => (
                     Across project work, I have used JavaScript, React, Node.js, Express.js, MySQL, and MongoDB, alongside authentication integrations. I’m interested in building responsive applications where clear user experiences are supported by reliable backend behavior, thoughtful data handling, and maintainable components. I also value collaborating through implementation and debugging to keep features consistent from interface to data layer.
                 </p>
             </div>
-        </div>
+        </Reveal>
     </section>
 );
 

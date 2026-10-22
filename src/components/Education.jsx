@@ -1,6 +1,8 @@
+import Reveal from "./Reveal";
+
 const Education = () => (
     <section id="education" className="section-block section-block--tint" aria-labelledby="education-title">
-        <div className="content-wrap">
+        <Reveal className="content-wrap" y={14}>
             <div className="section-heading section-heading--row">
                 <div>
                     <p className="eyebrow">06 — Education</p>
@@ -25,7 +27,7 @@ const Education = () => (
                     </div>
                 </article>
             </div>
-        </div>
+        </Reveal>
     </section>
 );
 
