@@ -1,6 +1,11 @@
+import { useEffect, useRef } from "react";
 import { projects } from "../data/projects";
 import { motion, useReducedMotion } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Reveal from "./Reveal";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectIllustration = ({ project }) => {
     if (project.id === "ecommerce") {
@@ -72,12 +77,51 @@ const ProjectIllustration = ({ project }) => {
     );
 };
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, index }) => {
     const reduceMotion = useReducedMotion();
+    const cardRef = useRef(null);
+
+    useEffect(() => {
+        const card = cardRef.current;
+        if (!card || reduceMotion) return undefined;
+
+        const context = gsap.context(() => {
+            const media = gsap.matchMedia();
+            media.add({
+                desktop: "(min-width: 900px)",
+                mobile: "(max-width: 899px)",
+            }, ({ conditions }) => {
+                const desktop = conditions?.desktop;
+                const visual = card.querySelector(".project-cover");
+                const content = card.querySelector(".project-card__body");
+                const initialRotation = desktop ? (index === 1 ? 4 : -4) : 0;
+
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom",
+                        end: "center center",
+                        scrub: 0.7,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                    .fromTo(visual,
+                        { clipPath: "inset(5% 4% 5% 4%)", scale: desktop ? 0.94 : 0.97, rotateY: initialRotation },
+                        { clipPath: "inset(0% 0% 0% 0%)", scale: 1, rotateY: 0, ease: "none" },
+                        0
+                    )
+                    .fromTo(content, { y: desktop ? 24 : 12 }, { y: 0, ease: "none" }, 0);
+            });
+            return () => media.revert();
+        }, card);
+
+        return () => context.revert();
+    }, [index, reduceMotion]);
 
     return (
         <motion.article
-            className="project-card"
+            ref={cardRef}
+            className={`project-card project-card--${project.id}`}
             initial={false}
             whileInView={reduceMotion ? undefined : { y: [14, 0] }}
             viewport={{ once: true, amount: 0.12 }}
@@ -85,6 +129,7 @@ const ProjectCard = ({ project }) => {
             whileHover={reduceMotion ? undefined : { y: -3 }}
         >
             <div className="project-cover">
+                <span className="project-cover__index">{project.number} / SELECTED WORK</span>
                 {project.image ? (
                     <img
                         src={project.image}
@@ -100,6 +145,7 @@ const ProjectCard = ({ project }) => {
                         <span className="project-cover__caption">Illustrative preview · not a screenshot</span>
                     </div>
                 )}
+                {project.liveUrl && <span className="project-cover__live">Live project</span>}
             </div>
             <div className="project-card__body">
                 <div className="project-card__heading">
@@ -142,7 +188,7 @@ const Projects = () => (
                 <p className="section-intro">Product features, API integration and learning workflows across three full-stack projects.</p>
             </div>
             <div className="project-grid">
-                {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
+                {projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}
             </div>
         </Reveal>
     </section>

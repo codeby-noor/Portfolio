@@ -13,7 +13,7 @@ const navLinks = [
     { label: "Contact", href: "#contact" },
 ];
 
-const Navbar = ({ onToggleTheme }) => {
+const Navbar = ({ theme, onToggleTheme }) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
     const menuToggleRef = useRef(null);
@@ -86,7 +86,7 @@ const Navbar = ({ onToggleTheme }) => {
                 </nav>
 
                 <div className="site-header__actions">
-                    <ThemeToggle onToggle={onToggleTheme} />
+                    <ThemeToggle theme={theme} onToggle={onToggleTheme} />
                     <a className="button button--small button--outline resume-link" href="/resume.pdf" download>
                         <FaFileDownload aria-hidden="true" />
                         Resume

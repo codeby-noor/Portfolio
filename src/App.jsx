@@ -55,9 +55,9 @@ const App = () => {
         <MotionConfig reducedMotion="user">
             <div className="portfolio-app">
                 <a className="skip-link" href="#main-content">Skip to content</a>
-                <Navbar onToggleTheme={handleToggleTheme} />
+                <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
                 <main id="main-content">
-                    <Hero />
+                    <Hero theme={theme} />
                     <About />
                     <Skills />
                     <Projects />

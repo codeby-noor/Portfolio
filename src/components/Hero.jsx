@@ -1,59 +1,150 @@
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const Hero = () => {
+const HeroScene = lazy(() => import("../three/HeroScene"));
+gsap.registerPlugin(ScrollTrigger);
+
+const Hero = ({ theme }) => {
     const reduceMotion = useReducedMotion();
+    const heroRef = useRef(null);
+    const [sceneVisible, setSceneVisible] = useState(false);
     const entrance = (delay) => (reduceMotion ? {} : {
         initial: { opacity: 1, y: 12 },
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
     });
 
+    useEffect(() => {
+        const hero = heroRef.current;
+        if (!hero || !("IntersectionObserver" in window)) {
+            setSceneVisible(true);
+            return undefined;
+        }
+
+        const observer = new IntersectionObserver(([entry]) => {
+            setSceneVisible(entry.isIntersecting);
+        }, { rootMargin: "120px" });
+        observer.observe(hero);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        const hero = heroRef.current;
+        if (!hero || reduceMotion) return undefined;
+
+        const context = gsap.context(() => {
+            const entrance = gsap.timeline({ defaults: { ease: "power3.out" } });
+            entrance
+                .fromTo(".hero-eyebrow", { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65 })
+                .fromTo(".hero-title-line__text", { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.12 }, 0.08)
+                .fromTo(".hero-role, .hero-summary", { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65, stagger: 0.08 }, 0.28)
+                .fromTo(".hero-actions, .hero-links", { y: 10, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.55, stagger: 0.08 }, 0.46);
+
+            const media = gsap.matchMedia();
+            media.add("(min-width: 900px)", () => {
+                const timeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: hero,
+                        start: "top top",
+                        end: "+=65%",
+                        pin: true,
+                        scrub: 0.8,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true,
+                    },
+                });
+
+                timeline
+                    .to(".hero-copy", { x: -34, y: -14, opacity: 0.84, ease: "none" }, 0)
+                    .to(".hero-signature", { y: 18, scale: 0.92, rotate: -2, transformOrigin: "50% 50%", ease: "none" }, 0)
+                    .to(".signature-orbit--outer", { rotate: 24, transformOrigin: "50% 50%", ease: "none" }, 0)
+                    .to(".signature-orbit--inner", { rotate: -18, transformOrigin: "50% 50%", ease: "none" }, 0);
+
+                return () => timeline.scrollTrigger?.kill();
+            });
+            media.add("(max-width: 899px)", () => {
+                gsap.to(".hero-signature", {
+                    y: -18,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: hero,
+                        start: "top top",
+                        end: "bottom top",
+                        scrub: 0.7,
+                    },
+                });
+            });
+            return () => media.revert();
+        }, hero);
+
+        return () => context.revert();
+    }, [reduceMotion]);
+
     return (
-        <section id="home" className="hero-section" aria-labelledby="hero-title">
+        <section ref={heroRef} id="home" className="hero-section" aria-labelledby="hero-title">
             <div className="content-wrap hero-layout">
                 <div className="hero-copy">
-                    <motion.p className="eyebrow hero-eyebrow" {...entrance(0)}>Navsari, India</motion.p>
+                    <motion.p className="eyebrow hero-eyebrow">Navsari, India</motion.p>
                     <motion.h1 id="hero-title" {...entrance(0.06)}>
-                        <span>Mahenoor</span> <span>Shaikh</span>
+                        <span className="hero-title-line"><span className="hero-title-line__text">Mahenoor</span></span>
+                        <span className="hero-title-line"><span className="hero-title-line__text">Shaikh</span></span>
                     </motion.h1>
-                    <motion.p className="hero-role" {...entrance(0.12)}>Full Stack Developer</motion.p>
-                    <motion.p className="hero-summary" {...entrance(0.18)}>
+                    <motion.p className="hero-role">Full Stack Developer</motion.p>
+                    <motion.p className="hero-summary">
                         I build responsive full-stack web applications, connecting thoughtful React interfaces to REST APIs, authentication, and MySQL or MongoDB data.
                     </motion.p>
-                    <motion.div className="hero-actions" {...entrance(0.24)}>
+                    <motion.div className="hero-actions">
                         <a className="button button--primary" href="#projects">View projects</a>
                         <a className="button button--outline" href="/resume.pdf" download>Download resume</a>
                     </motion.div>
-                    <motion.div className="hero-links" aria-label="Contact and professional profiles" {...entrance(0.3)}>
+                    <motion.div className="hero-links" aria-label="Contact and professional profiles">
                         <a href="mailto:Mahenoorshaikh0408@gmail.com">Email</a>
                         <a href="https://github.com/codeby-noor" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <a href="https://www.linkedin.com/in/mahenoor-shaikh-994125350/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     </motion.div>
                 </div>
-                <motion.aside className="hero-visual" aria-label="Illustrative application stack: React interface, Node and Express API, MySQL and MongoDB data" {...entrance(0.2)}>
-                    <svg viewBox="0 0 520 340" role="img" aria-labelledby="stack-title stack-description">
-                        <title id="stack-title">Application stack</title>
-                        <desc id="stack-description">A simple diagram connecting a React interface to a Node and Express API and MySQL and MongoDB data stores.</desc>
-                        <path className="stack-guide" d="M42 48v244M478 48v244" />
-                        <text className="stack-overline" x="42" y="30">APPLICATION STACK</text>
-                        <text className="stack-index" x="470" y="30" textAnchor="end">01 / 03</text>
-                        <rect className="stack-node stack-node--primary" x="78" y="62" width="364" height="64" />
-                        <text className="stack-node__index" x="98" y="88">01</text>
-                        <text className="stack-node__title" x="143" y="91">Frontend</text>
-                        <text className="stack-node__detail" x="143" y="111">React.js · Responsive UI</text>
-                        <path className="stack-connector" d="M260 126v32" />
-                        <circle className="stack-joint" cx="260" cy="142" r="3" />
-                        <rect className="stack-node" x="78" y="158" width="364" height="64" />
-                        <text className="stack-node__index" x="98" y="184">02</text>
-                        <text className="stack-node__title" x="143" y="187">Backend</text>
-                        <text className="stack-node__detail" x="143" y="207">Node.js · Express.js · REST APIs</text>
-                        <path className="stack-connector" d="M260 222v31m0 0H166v17m94-17h94v17" />
-                        <rect className="stack-node stack-node--data" x="78" y="270" width="176" height="48" />
-                        <text className="stack-node__detail" x="96" y="299">MySQL</text>
-                        <rect className="stack-node stack-node--data" x="266" y="270" width="176" height="48" />
-                        <text className="stack-node__detail" x="284" y="299">MongoDB</text>
+                <motion.aside className="hero-visual hero-visual--signature" aria-label="Mahenoor Shaikh monogram surrounded by a diagram connecting interface, APIs and data" {...entrance(0.2)}>
+                    {!reduceMotion && sceneVisible && (
+                        <Suspense fallback={<div className="hero-scene-fallback" aria-hidden="true" />}>
+                            <HeroScene theme={theme} />
+                        </Suspense>
+                    )}
+                    <svg className="hero-signature" viewBox="0 0 560 430" role="img" aria-labelledby="signature-title signature-description">
+                        <title id="signature-title">A full-stack developer’s folio seal</title>
+                        <desc id="signature-description">An original MS monogram with fine registration lines connecting interface, API and data.</desc>
+                        <rect className="signature-frame" x="18" y="18" width="524" height="394" />
+                        <path className="signature-rule" d="M44 62h112M404 62h112M44 368h112M404 368h112" />
+                        <text className="signature-label" x="44" y="48">MAHENOOR SHAIKH</text>
+                        <text className="signature-label" x="516" y="48" textAnchor="end">FULL STACK / 01</text>
+                        <text className="signature-caption" x="44" y="392">NAVSARI, INDIA</text>
+                        <text className="signature-caption" x="516" y="392" textAnchor="end">INTERFACE · API · DATA</text>
+                        <circle className="signature-disc" cx="280" cy="218" r="127" />
+                        <circle className="signature-orbit signature-orbit--outer" cx="280" cy="218" r="108" />
+                        <circle className="signature-orbit signature-orbit--inner" cx="280" cy="218" r="92" />
+                        <motion.path
+                            className="signature-trace"
+                            d="M44 124h108l39 38m217-38h-108l-39 38M44 312h108l39-38m217 38h-108l-39-38"
+                            initial={reduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 1.15, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        />
+                        <motion.path
+                            className="signature-trace signature-trace--axis"
+                            d="M280 91v30m0 194v30M153 218h36m182 0h36"
+                            initial={reduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                        />
+                        <circle className="signature-node" cx="44" cy="124" r="4" />
+                        <circle className="signature-node" cx="516" cy="124" r="4" />
+                        <circle className="signature-node" cx="44" cy="312" r="4" />
+                        <circle className="signature-node" cx="516" cy="312" r="4" />
+                        <text className="signature-monogram" x="280" y="240" textAnchor="middle">MS</text>
+                        <path className="signature-name-rule" d="M239 260h82" />
+                        <text className="signature-discipline" x="280" y="282" textAnchor="middle">BUILDING ACROSS THE STACK</text>
                     </svg>
-                    <span className="hero-visual__caption">Illustrative stack overview</span>
                 </motion.aside>
             </div>
         </section>
