@@ -4,6 +4,7 @@ import Reveal from "./Reveal";
 
 const Skills = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [activeSkill, setActiveSkill] = useState(skillCategories[0].skills[3]);
     const tabListRef = useRef(null);
     const activeCategory = skillCategories[activeIndex];
 
@@ -20,12 +21,13 @@ const Skills = () => {
 
         event.preventDefault();
         setActiveIndex(nextIndex);
+        setActiveSkill(skillCategories[nextIndex].skills[0]);
         tabs[nextIndex].focus();
     };
 
     return (
         <section id="skills" className="section-block" aria-labelledby="skills-title">
-            <Reveal className="content-wrap" y={14}>
+            <Reveal className="content-wrap" y={0}>
                 <div className="section-heading section-heading--row">
                     <div>
                         <p className="eyebrow">03 — Skills</p>
@@ -52,7 +54,10 @@ const Skills = () => {
                                 aria-controls="skill-panel"
                                 tabIndex={index === activeIndex ? 0 : -1}
                                 key={category.title}
-                                onClick={() => setActiveIndex(index)}
+                                onClick={() => {
+                                    setActiveIndex(index);
+                                    setActiveSkill(category.skills[0]);
+                                }}
                             >
                                 <span>{category.title}</span>
                                 <span className="skill-tab__count">{String(category.skills.length).padStart(2, "0")}</span>
@@ -66,10 +71,34 @@ const Skills = () => {
                         aria-labelledby={`skill-tab-${activeIndex}`}
                         tabIndex="0"
                     >
-                        <p className="skill-panel__eyebrow">{activeCategory.title}</p>
-                        <ul className="skill-panel__list">
-                            {activeCategory.skills.map((skill) => <li key={skill}>{skill}</li>)}
-                        </ul>
+                        <div className="skill-network">
+                            <div className="skill-focus" aria-live="polite">
+                                <span className="skill-focus__index">{String(activeCategory.skills.indexOf(activeSkill) + 1).padStart(2, "0")} / {String(activeCategory.skills.length).padStart(2, "0")}</span>
+                                <p className="skill-panel__eyebrow">{activeCategory.title} / Selected node</p>
+                                <h3 key={activeSkill} className={`skill-focus__title${activeSkill.length > 23 ? " skill-focus__title--long" : ""}`}>{activeSkill}</h3>
+                                <span className="skill-focus__rule" aria-hidden="true" />
+                            </div>
+                            <div className="skill-network__field" role="group" aria-label={`${activeCategory.title} skills`}>
+                                <svg className="skill-network__wires" viewBox="0 0 640 300" preserveAspectRatio="none" aria-hidden="true">
+                                    <path d="M26 46 160 100 302 42 451 109 612 54M26 46 76 240 160 100 227 250 302 42 375 232 451 109 554 242 612 54M76 240 227 250 375 232 554 242" />
+                                </svg>
+                                <ul className="skill-network__nodes">
+                                    {activeCategory.skills.map((skill, index) => (
+                                        <li className={`skill-network__node skill-network__node--${index % 8}`} key={skill}>
+                                            <button
+                                                type="button"
+                                                aria-pressed={activeSkill === skill}
+                                                className={activeSkill === skill ? "skill-network__button skill-network__button--active" : "skill-network__button"}
+                                                onClick={() => setActiveSkill(skill)}
+                                            >
+                                                <span className="skill-network__dot" aria-hidden="true" />
+                                                {skill}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </Reveal>

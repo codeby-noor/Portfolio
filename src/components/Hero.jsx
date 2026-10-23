@@ -37,10 +37,10 @@ const Hero = ({ theme }) => {
         const context = gsap.context(() => {
             const entrance = gsap.timeline({ defaults: { ease: "power3.out" } });
             entrance
-                .fromTo(".hero-eyebrow", { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65 })
-                .fromTo(".hero-title-line__text", { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.12 }, 0.08)
-                .fromTo(".hero-role, .hero-summary", { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.65, stagger: 0.08 }, 0.28)
-                .fromTo(".hero-actions, .hero-links", { y: 10, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.55, stagger: 0.08 }, 0.46);
+                .fromTo(".hero-eyebrow", { y: 12 }, { y: 0, duration: 0.65 })
+                .fromTo(".hero-title-line__text", { yPercent: 18 }, { yPercent: 0, duration: 0.9, stagger: 0.12 }, 0.08)
+                .fromTo(".hero-role, .hero-summary", { y: 12 }, { y: 0, duration: 0.65, stagger: 0.08 }, 0.28)
+                .fromTo(".hero-actions, .hero-links", { y: 10 }, { y: 0, duration: 0.55, stagger: 0.08 }, 0.46);
 
             const media = gsap.matchMedia();
             media.add("(min-width: 900px)", () => {

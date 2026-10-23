@@ -77,7 +77,7 @@ const ProjectIllustration = ({ project }) => {
     );
 };
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project }) => {
     const reduceMotion = useReducedMotion();
     const cardRef = useRef(null);
 
@@ -94,38 +94,50 @@ const ProjectCard = ({ project, index }) => {
                 const desktop = conditions?.desktop;
                 const visual = card.querySelector(".project-cover");
                 const content = card.querySelector(".project-card__body");
-                const initialRotation = desktop ? (index === 1 ? 4 : -4) : 0;
+                const scenes = {
+                    "ai-jamin": {
+                        from: { clipPath: "inset(0% 0% 100% 0%)", scale: 1.12, rotateX: -7, y: 22 },
+                        to: { clipPath: "inset(0% 0% 0% 0%)", scale: 1, rotateX: 0, y: 0 },
+                    },
+                    ecommerce: {
+                        from: { clipPath: "inset(0% 100% 0% 0%)", scale: 0.92, rotateY: 11, x: -18 },
+                        to: { clipPath: "inset(0% 0% 0% 0%)", scale: 1, rotateY: 0, x: 0 },
+                    },
+                    codequest: {
+                        from: { clipPath: "inset(100% 0% 0% 0%)", scale: 0.94, rotateY: -10, y: -16 },
+                        to: { clipPath: "inset(0% 0% 0% 0%)", scale: 1, rotateY: 0, y: 0 },
+                    },
+                };
+                const scene = scenes[project.id];
+                const from = desktop ? scene.from : { ...scene.from, scale: 0.97, rotateX: 0, rotateY: 0, x: 0, y: 10 };
+                const to = scene.to;
+                const coverArt = card.querySelector(".project-art, .project-cover img");
 
                 gsap.timeline({
                     scrollTrigger: {
                         trigger: card,
-                        start: "top bottom",
-                        end: "center center",
-                        scrub: 0.7,
+                        start: "top 92%",
+                        end: "center 55%",
+                        scrub: 0.65,
                         invalidateOnRefresh: true,
                     },
                 })
-                    .fromTo(visual,
-                        { clipPath: "inset(5% 4% 5% 4%)", scale: desktop ? 0.94 : 0.97, rotateY: initialRotation },
-                        { clipPath: "inset(0% 0% 0% 0%)", scale: 1, rotateY: 0, ease: "none" },
-                        0
-                    )
-                    .fromTo(content, { y: desktop ? 24 : 12 }, { y: 0, ease: "none" }, 0);
+                    .fromTo(visual, from, { ...to, ease: "none" }, 0)
+                    .fromTo(content, { y: desktop ? 28 : 12 }, { y: 0, ease: "none" }, 0.1)
+                    .fromTo(coverArt, { scale: 1.13 }, { scale: 1, ease: "none" }, 0);
             });
             return () => media.revert();
         }, card);
 
         return () => context.revert();
-    }, [index, reduceMotion]);
+    }, [project.id, reduceMotion]);
 
     return (
         <motion.article
             ref={cardRef}
             className={`project-card project-card--${project.id}`}
+            data-project={project.id}
             initial={false}
-            whileInView={reduceMotion ? undefined : { y: [14, 0] }}
-            viewport={{ once: true, amount: 0.12 }}
-            transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
             whileHover={reduceMotion ? undefined : { y: -3 }}
         >
             <div className="project-cover">
@@ -179,7 +191,7 @@ const ProjectCard = ({ project, index }) => {
 
 const Projects = () => (
     <section id="projects" className="section-block section-block--projects" aria-labelledby="projects-title">
-        <Reveal className="content-wrap" y={14}>
+        <Reveal className="content-wrap" y={0}>
             <div className="section-heading section-heading--row">
                 <div>
                     <p className="eyebrow">04 — Projects</p>
@@ -188,7 +200,7 @@ const Projects = () => (
                 <p className="section-intro">Product features, API integration and learning workflows across three full-stack projects.</p>
             </div>
             <div className="project-grid">
-                {projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}
+                {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
             </div>
         </Reveal>
     </section>
