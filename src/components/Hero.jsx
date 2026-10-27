@@ -91,7 +91,7 @@ const Hero = ({ theme }) => {
                         <span className="hero-title-line"><span className="hero-title-line__text">Mahenoor</span></span>
                         <span className="hero-title-line"><span className="hero-title-line__text">Shaikh</span></span>
                     </motion.h1>
-                    <motion.p className="hero-role">Full Stack Developer</motion.p>
+                    <motion.p className="hero-role">Full-Stack Web Developer</motion.p>
                     <motion.p className="hero-summary">
                         I build responsive full-stack web applications, connecting thoughtful React interfaces to REST APIs, authentication, and MySQL or MongoDB data.
                     </motion.p>

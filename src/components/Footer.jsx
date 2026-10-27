@@ -5,7 +5,7 @@ const Footer = () => (
                 <span className="site-footer__monogram" aria-hidden="true">MS</span>
                 <div>
                     <span>© {new Date().getFullYear()} Mahenoor Shaikh</span>
-                    <span className="site-footer__caption">Full Stack Developer · Navsari, India</span>
+                    <span className="site-footer__caption">Full-Stack Web Developer · Navsari, India</span>
                 </div>
             </div>
             <a href="#home">Back to top ↑</a>
