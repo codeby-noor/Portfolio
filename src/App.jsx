@@ -9,6 +9,8 @@ import Education from "./components/Education";
 import Languages from "./components/Languages";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ProjectDetailPage from "./components/ProjectDetailPage";
+import { projects } from "./data/projects";
 import { initializeAnalytics } from "./analytics";
 import { MotionConfig } from "motion/react";
 import "./styles/redesign.css";
@@ -28,8 +30,10 @@ const getInitialTheme = () => {
     return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 };
 
-const App = () => {
+const App = ({ initialPath = "/" }) => {
     const [theme, setTheme] = useState(getInitialTheme);
+    const normalizedPath = initialPath.replace(/\/+$/, "") || "/";
+    const project = projects.find(({ slug }) => normalizedPath === `/projects/${slug}`);
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
@@ -50,6 +54,10 @@ const App = () => {
             console.warn("Unable to save the selected color theme.", error);
         }
     };
+
+    if (project) {
+        return <ProjectDetailPage project={project} theme={theme} onToggleTheme={handleToggleTheme} />;
+    }
 
     return (
         <MotionConfig reducedMotion="user">

@@ -89,6 +89,7 @@ const Hero = ({ theme }) => {
                     <motion.p className="eyebrow hero-eyebrow">Navsari, India</motion.p>
                     <motion.h1 id="hero-title" {...entrance(0.06)}>
                         <span className="hero-title-line"><span className="hero-title-line__text">Mahenoor</span></span>
+                        {" "}
                         <span className="hero-title-line"><span className="hero-title-line__text">Shaikh</span></span>
                     </motion.h1>
                     <motion.p className="hero-role">Full-Stack Web Developer</motion.p>

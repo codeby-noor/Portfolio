@@ -6,6 +6,6 @@ import App from "./App";
 hydrateRoot(
     document.getElementById("root"),
     <React.StrictMode>
-        <App />
+        <App initialPath={window.location.pathname} />
     </React.StrictMode>
 );

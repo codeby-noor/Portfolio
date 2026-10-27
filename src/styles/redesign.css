@@ -934,6 +934,32 @@ body,
     line-height: 1.7;
 }
 
+.project-card__tagline {
+    margin: 8px 0 -4px;
+    color: var(--accent-text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.project-links--featured {
+    gap: 10px;
+}
+
+.project-links--featured a {
+    min-height: 42px;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.project-links--featured a.button--primary {
+    color: var(--on-accent);
+}
+
+.project-links--featured a:hover {
+    text-decoration: none;
+}
+
 .project-contribution {
     display: grid;
     width: 100%;

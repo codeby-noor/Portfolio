@@ -7,7 +7,7 @@ import Reveal from "./Reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ProjectIllustration = ({ project }) => {
+export const ProjectIllustration = ({ project }) => {
     if (project.id === "ecommerce") {
         return (
             <svg className="project-art project-art--commerce" viewBox="0 0 640 400" role="img" aria-label="Illustrative e-commerce product catalogue">
@@ -135,7 +135,7 @@ const ProjectCard = ({ project }) => {
     return (
         <motion.article
             ref={cardRef}
-            className={`project-card project-card--${project.id}`}
+            className={`project-card project-card--${project.id}${project.featured ? " project-card--featured" : ""}`}
             data-project={project.id}
             initial={false}
             whileHover={reduceMotion ? undefined : { y: -3 }}
@@ -145,11 +145,12 @@ const ProjectCard = ({ project }) => {
                 {project.image ? (
                     <img
                         src={project.image}
-                        alt={`${project.title} project screenshot`}
-                        width="640"
-                        height="400"
+                        alt={project.imageAlt || `${project.title} project screenshot`}
+                        width="1365"
+                        height="850"
                         loading="lazy"
                         decoding="async"
+                        sizes="(max-width: 899px) 100vw, 48vw"
                     />
                 ) : (
                     <div className="project-cover__illustration">
@@ -157,12 +158,13 @@ const ProjectCard = ({ project }) => {
                         <span className="project-cover__caption">Illustrative preview · not a screenshot</span>
                     </div>
                 )}
-                {project.liveUrl && <span className="project-cover__live">Live project</span>}
+                {project.liveUrl && <span className="project-cover__live">{project.liveLabel || "Live project"}</span>}
             </div>
             <div className="project-card__body">
                 <div className="project-card__heading">
                     <p className="eyebrow"><span className="project-number">{project.number}</span> / {project.type}</p>
                     <h3>{project.title}</h3>
+                    {project.tagline && <p className="project-card__tagline">{project.tagline}</p>}
                     <p className="project-card__summary">{project.summary}</p>
                 </div>
                 <div className="project-contribution">
@@ -176,11 +178,24 @@ const ProjectCard = ({ project }) => {
                         {project.technologies.map((technology) => <li key={technology}>{technology}</li>)}
                     </ul>
                 )}
-                <div className="project-links">
+                <div className={`project-links${project.featured ? " project-links--featured" : ""}`}>
+                    <a
+                        className={project.featured ? "button button--primary button--small" : undefined}
+                        href={`/projects/${project.slug}`}
+                    >
+                        {project.featured ? "View Case Study" : "Read project case study"}
+                    </a>
                     {project.liveUrl && (
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">Live project <span aria-hidden="true">↗</span></a>
+                        <a
+                            className={project.featured ? "button button--outline button--small" : undefined}
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {project.featured ? project.liveLabel || "Live Demo" : "Live project"} <span aria-hidden="true">↗</span>
+                        </a>
                     )}
-                    {project.githubUrl && (
+                    {project.githubUrl && !project.featured && (
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
                     )}
                 </div>
