@@ -339,8 +339,8 @@ const ProjectDetailPage = ({ project, theme, onToggleTheme }) => {
                             <img
                                 src={project.image}
                                 alt={project.imageAlt || `${project.title} project screenshot`}
-                                width="1365"
-                                height="850"
+                                width={project.imageWidth || 1365}
+                                height={project.imageHeight || 850}
                                 loading="eager"
                                 decoding="async"
                             />
@@ -350,7 +350,7 @@ const ProjectDetailPage = ({ project, theme, onToggleTheme }) => {
                                 <figcaption>Illustrative interface preview, not a product screenshot.</figcaption>
                             </>
                         )}
-                        {project.image && <figcaption>Screenshot of the live SHOPERA storefront.</figcaption>}
+                        {project.image && <figcaption>Screenshot of the live {project.title} application.</figcaption>}
                     </figure>
 
                     <div className="project-detail-facts">

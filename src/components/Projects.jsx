@@ -95,10 +95,6 @@ const ProjectCard = ({ project }) => {
                 const visual = card.querySelector(".project-cover");
                 const content = card.querySelector(".project-card__body");
                 const scenes = {
-                    "ai-jamin": {
-                        from: { clipPath: "inset(0% 0% 100% 0%)", scale: 1.12, rotateX: -7, y: 22 },
-                        to: { clipPath: "inset(0% 0% 0% 0%)", scale: 1, rotateX: 0, y: 0 },
-                    },
                     ecommerce: {
                         from: { clipPath: "inset(0% 100% 0% 0%)", scale: 0.92, rotateY: 11, x: -18 },
                         to: { clipPath: "inset(0% 0% 0% 0%)", scale: 1, rotateY: 0, x: 0 },
@@ -111,7 +107,6 @@ const ProjectCard = ({ project }) => {
                 const scene = scenes[project.id];
                 const from = desktop ? scene.from : { ...scene.from, scale: 0.97, rotateX: 0, rotateY: 0, x: 0, y: 10 };
                 const to = scene.to;
-                const coverArt = card.querySelector(".project-art, .project-cover img");
 
                 gsap.timeline({
                     scrollTrigger: {
@@ -123,8 +118,7 @@ const ProjectCard = ({ project }) => {
                     },
                 })
                     .fromTo(visual, from, { ...to, ease: "none" }, 0)
-                    .fromTo(content, { y: desktop ? 28 : 12 }, { y: 0, ease: "none" }, 0.1)
-                    .fromTo(coverArt, { scale: 1.13 }, { scale: 1, ease: "none" }, 0);
+                    .fromTo(content, { y: desktop ? 28 : 12 }, { y: 0, ease: "none" }, 0.1);
             });
             return () => media.revert();
         }, card);
@@ -142,12 +136,40 @@ const ProjectCard = ({ project }) => {
         >
             <div className="project-cover">
                 <span className="project-cover__index">{project.number} / SELECTED WORK</span>
-                {project.image ? (
+                {project.liveUrl ? (
+                    <a
+                        className="project-cover__link"
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open ${project.title} live demo`}
+                    >
+                        {project.image ? (
+                            <img
+                                src={project.image}
+                                alt={project.imageAlt || `${project.title} project screenshot`}
+                                width={project.imageWidth || 1365}
+                                height={project.imageHeight || 850}
+                                loading="lazy"
+                                decoding="async"
+                                sizes="(max-width: 899px) 100vw, 48vw"
+                            />
+                        ) : (
+                            <>
+                                <div className="project-cover__illustration">
+                                    <ProjectIllustration project={project} />
+                                </div>
+                                <span className="project-cover__caption">Illustrative preview</span>
+                            </>
+                        )}
+                        <span className="project-cover__live">View Live Project <span aria-hidden="true">↗</span></span>
+                    </a>
+                ) : project.image ? (
                     <img
                         src={project.image}
                         alt={project.imageAlt || `${project.title} project screenshot`}
-                        width="1365"
-                        height="850"
+                        width={project.imageWidth || 1365}
+                        height={project.imageHeight || 850}
                         loading="lazy"
                         decoding="async"
                         sizes="(max-width: 899px) 100vw, 48vw"
@@ -155,10 +177,8 @@ const ProjectCard = ({ project }) => {
                 ) : (
                     <div className="project-cover__illustration">
                         <ProjectIllustration project={project} />
-                        <span className="project-cover__caption">Illustrative preview · not a screenshot</span>
                     </div>
                 )}
-                {project.liveUrl && <span className="project-cover__live">{project.liveLabel || "Live project"}</span>}
             </div>
             <div className="project-card__body">
                 <div className="project-card__heading">
@@ -195,8 +215,16 @@ const ProjectCard = ({ project }) => {
                             {project.featured ? project.liveLabel || "Live Demo" : "Live project"} <span aria-hidden="true">↗</span>
                         </a>
                     )}
-                    {project.githubUrl && !project.featured && (
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">↗</span></a>
+                    {project.githubUrl && (
+                        <a
+                            className={project.featured ? "button button--outline button--small" : undefined}
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`View ${project.title} source code on GitHub`}
+                        >
+                            GitHub <span aria-hidden="true">↗</span>
+                        </a>
                     )}
                 </div>
             </div>
@@ -212,7 +240,7 @@ const Projects = () => (
                     <p className="eyebrow">04 — Projects</p>
                     <h2 id="projects-title">Selected work</h2>
                 </div>
-                <p className="section-intro">Product features, API integration and learning workflows across three full-stack projects.</p>
+                <p className="section-intro">A full-stack commerce experience and a gamified platform for learning to code.</p>
             </div>
             <div className="project-grid">
                 {projects.map((project) => <ProjectCard key={project.id} project={project} />)}

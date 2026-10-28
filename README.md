@@ -14,7 +14,7 @@ The portfolio provides a concise overview of full-stack development work, a BCA 
 
 ## Features
 
-- **Selected projects**: Three full-stack project summaries with clearly labelled illustrative previews and links shown only when available.
+- **Selected projects**: SHOPERA and CodeQuest, with project previews, verified live demos, and detailed case studies.
 - **Interactive skills**: Keyboard-accessible grouped skill tabs.
 - **Experience, education, and languages**: Separate professional and academic history sections, plus a languages list.
 - **Light and dark themes**: Theme choice is stored locally when browser storage is available.
@@ -39,11 +39,10 @@ The portfolio provides a concise overview of full-stack development work, a BCA 
 
 ## Featured Projects
 
-1. **Full Stack E-Commerce Platform** — Product listings, shopping cart functionality, React interface, REST APIs, and MySQL-backed product data.
-2. **CodeQuest** — Gamified coding-learning platform with six worlds, 97 missions, progress, XP, levels, and achievements. No public demo or source link is available.
-3. **AI Jamin — Real Estate Marketplace** — Property listings, search, detailed pages, API integrations, and authentication. [Live project](https://www.aijamin.in/).
+1. **SHOPERA** — Full-stack e-commerce platform for product discovery, shopping functionality, and backend integration. [Live demo](https://shopera-ecommerce-frontend.vercel.app/).
+2. **CodeQuest** — Gamified coding-learning platform with coding challenges, progression, and achievements. [Live demo](https://codequest-virid.vercel.app/).
 
-Project screenshot assets are not currently included. The project covers are illustrative SVG artwork, not screenshots. Add verified images under `public/projects/` and set each project's `image` field in `src/data/projects.js` when screenshots are available.
+SHOPERA uses the captured storefront screenshot in `public/images/shopera/`. CodeQuest uses a genuine screenshot of its live application in `public/images/codequest/`.
 
 ---
 
