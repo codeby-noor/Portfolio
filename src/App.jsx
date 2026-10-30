@@ -11,7 +11,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ProjectDetailPage from "./components/ProjectDetailPage";
 import { projects } from "./data/projects";
-import { initializeAnalytics } from "./analytics";
+import { initializeAnalytics, trackProjectView } from "./analytics";
 import { MotionConfig } from "motion/react";
 import "./styles/redesign.css";
 
@@ -43,7 +43,10 @@ const App = ({ initialPath = "/" }) => {
 
     useEffect(() => {
         initializeAnalytics();
-    }, []);
+        if (project) {
+            trackProjectView(project);
+        }
+    }, [project]);
 
     const handleToggleTheme = () => {
         const nextTheme = theme === "dark" ? "light" : "dark";
