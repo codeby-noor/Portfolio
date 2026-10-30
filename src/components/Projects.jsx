@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Reveal from "./Reveal";
+import InterfaceShowcase from "./InterfaceShowcase";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -245,6 +246,7 @@ const Projects = () => (
             <div className="project-grid">
                 {projects.map((project) => <ProjectCard key={project.id} project={project} />)}
             </div>
+            <InterfaceShowcase />
         </Reveal>
     </section>
 );
